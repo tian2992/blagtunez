@@ -5,8 +5,6 @@ package blagtunez;
  */
 
 public class artista implements java.io.Serializable {
-    boolean usarPrueba = true; //TODO: cambiar esto por la lista hecha por mi
-
 
     String nombre;
     String nacionalidad;
@@ -15,7 +13,7 @@ public class artista implements java.io.Serializable {
     java.util.List<cancion> lisCan;
 
     artista(){
-        if (usarPrueba)
+        if (liston.noFuncioListon)
             lisCan = new java.util.ArrayList<cancion>();
         else
             lisCan = new liston<cancion>();
