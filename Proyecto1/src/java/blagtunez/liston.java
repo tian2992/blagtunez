@@ -10,15 +10,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-
-
-
 /**
  *
  * @author tian
  */
 public class liston<E> implements java.util.List  {
 
+    static boolean noFuncioListon = false; //TODO: cambiar esto cuando funcione
     
 
     public int size() {
