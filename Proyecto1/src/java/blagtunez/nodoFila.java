@@ -10,7 +10,6 @@ package blagtunez;
  * @author tian
  */
 public class nodoFila extends nodoHead{
-    char letra;
 
     nodoFila(){
         
@@ -20,13 +19,6 @@ public class nodoFila extends nodoHead{
         setLetra(c);
     }
 
-    public char getLetra() {
-        return letra;
-    }
-
-    public void setLetra(char letra) {
-        this.letra = letra;
-    }
     
 
 }

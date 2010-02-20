@@ -22,6 +22,14 @@ public class nodo {
         this.letrina = letrina;
     }
 
+    public char getLetra() {
+        return letrina;
+    }
+
+    public void setLetra(char letra) {
+        this.letrina = letra;
+    }
+
 
     public String getGenero() {
         return genero;

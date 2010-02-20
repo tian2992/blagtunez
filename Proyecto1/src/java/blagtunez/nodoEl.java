@@ -1,6 +1,5 @@
 package blagtunez;
 
-import java.util.List;
 
 /**
  *
