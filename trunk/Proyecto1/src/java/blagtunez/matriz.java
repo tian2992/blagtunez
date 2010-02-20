@@ -150,14 +150,27 @@ public class matriz {
             return false;
     }
 
-    nodoFila buscarFila(char C){ //TODO: implementar busqueda de fila
+    nodoFila buscarFila(char C){
+        nodoFila temp=inicioFila;
+        while ((temp.isDerecha())){
+            if (temp.getLetra()==C)
+                return temp;
+            temp = (nodoFila)temp.getDerecha();
+        }
+        fiPuntoInsercion = temp;
         // fipuntoInsercion = alguna onda
         return null; //no lo encontramos, por eso tiramos null
     }
 
     nodoCol buscarColumna(String s){ //la misma onda que con las filas
-        //TODO: implementar busqueda de columna
 
+        nodoCol temp=inicioCol;
+        while ((temp.isDerecha())){
+            if (temp.getGenero().equals(s))
+                return temp;
+            temp = (nodoCol)temp.getAbajo();
+        }
+        coPuntoInsercion = temp;
         return null;
     }
 
