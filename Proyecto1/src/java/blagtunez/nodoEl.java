@@ -18,6 +18,11 @@ public class nodoEl extends nodo {
             payload = new liston<artista>();
     }
 
+    nodoEl(char l, String ge){
+        setLetrina(l);
+        setGenero(ge);
+    }
+
     nodoEl(nodoFila l, nodoHead g){
         super();
         let = l;
