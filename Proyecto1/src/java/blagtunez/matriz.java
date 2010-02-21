@@ -20,8 +20,6 @@ public class matriz {
     }
 
     public nodo agregarNodo(nodoEl ing){
-        nodoFila filTem = inicioFila;
-        nodoCol coltem = inicioCol;
         if (this.esVacia()){
             //ya que esta vacia, debo crear filas y columnas
             nodoFila tempFi = new nodoFila();
@@ -41,9 +39,11 @@ public class matriz {
             tempCol.setAbajo(ing);
             //conecto el nodo
             ing.setIzquierda(tempFi);
-            ing.setDerecha(tempCol);
+            ing.setArriba(tempCol);
             ing.setLet(tempFi);
             ing.setGen(tempCol);
+            
+            return ing;
         }
         else { //aqui viene lo bueno, no esta vacia
 
@@ -128,23 +128,21 @@ public class matriz {
             while (nec.isDerecha()){
                 nec = nec.getDerecha();
             }
-            //supuestamente nec tiene lo mas extremo de la fila
+            //supuestamente nec tiene lo mas extremo de la columna
             // y ninf es el que tiene letra inferior a
 
-            nec.setDerecha(ing);
-            ing.setIzquierda(nec);
+            nec.setAbajo(ing);
+            ing.setArriba(nec);
             
-            ninf.setAbajo(ing);
-            ing.setArriba(ninf);
+            ninf.setDerecha(ing);
+            ing.setIzquierda(ninf);
 
-            System.err.println(ninf.getArriba());
+            //System.err.println(ninf.getArriba());
 
             return ing;
         }
 
         //algo muy malo debio haber pasado :(
-
-        return null;
     }
 
     public boolean esVacia(){
@@ -173,13 +171,21 @@ public class matriz {
         return temp;
     }
 
+    nodoEl gugel(char C, String S){
+        return buscar(C,S);
+    }
+
+    nodoEl buscar(char C, String S){
+
+        return null;
+    }
 
     nodoFila buscarFila(char C){
         nodoFila temp=inicioFila;
-        while ((temp.isDerecha())){
+        while ((temp.isAbajo())){
             if (temp.getLetra()==C)
                 return temp;
-            temp = (nodoFila)temp.getDerecha();
+            temp = (nodoFila)temp.getAbajo();
         }
         fiPuntoInsercion = temp;
         // fipuntoInsercion = alguna onda
@@ -192,7 +198,7 @@ public class matriz {
         while ((temp.isDerecha())){
             if (temp.getGenero().equals(s))
                 return temp;
-            temp = (nodoCol)temp.getAbajo();
+            temp = (nodoCol)temp.getDerecha();
         }
         coPuntoInsercion = temp;
         return null;

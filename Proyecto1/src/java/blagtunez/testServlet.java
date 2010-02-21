@@ -23,7 +23,11 @@ public class testServlet extends HttpServlet {
     public void init(){
 
     }
-   
+
+    public String imprenta(nodo q){
+        return ("letra : "+q.getLetrina() + "\n" + "genero : "+q.getGenero());
+    }
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -42,10 +46,13 @@ public class testServlet extends HttpServlet {
             matrix.agregarNodo(new nodoEl('d',"pop"));
             matrix.agregarNodo(new nodoEl('e',"rock"));
 
-            nodo q = matrix.buscarPorFila('c',"pop");
+            //nodo q = matrix.buscarPorFila('c',"pop");
 
-            out.println("letra : "+q.getLetrina());
-            out.println("genero : "+q.getGenero());
+            nodo q = matrix.gugel('c',"pop");
+            out.println("hora de la hora");
+
+            out.println(imprenta(q));
+
             /*
             out.println(songi.getNombre());
             out.println("blag");
