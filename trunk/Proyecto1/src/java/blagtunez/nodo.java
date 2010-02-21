@@ -11,8 +11,12 @@ public class nodo {
     nodo izquierda  = null;
     nodo derecha    = null;
 
-    String genero;
+    String genero = "";
     char letrina;
+
+    public String toString(){
+        return "Letra: "+getLetrina()+" - Genero: "+getGenero();
+    }
 
     public char getLetrina() {
         return letrina;

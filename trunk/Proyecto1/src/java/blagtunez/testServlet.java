@@ -18,11 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class testServlet extends HttpServlet {
 
-    cancion songi;
+    static matriz matrix;
 
     public void init(){
-        songi = new cancion();
-        songi.setNombre("blagman");
+
     }
    
     /** 
@@ -37,10 +36,22 @@ public class testServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            matrix = new matriz();
+            matrix.agregarNodo(new nodoEl('c',"rock"));
+            matrix.agregarNodo(new nodoEl('c',"pop"));
+            matrix.agregarNodo(new nodoEl('d',"pop"));
+            matrix.agregarNodo(new nodoEl('e',"rock"));
+
+            nodo q = matrix.buscarPorFila('c',"pop");
+
+            out.println("letra : "+q.getLetrina());
+            out.println("genero : "+q.getGenero());
+            /*
             out.println(songi.getNombre());
             out.println("blag");
 
             songi.setNombre("gluglumi");
+             */
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");

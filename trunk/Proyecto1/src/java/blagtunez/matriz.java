@@ -31,15 +31,17 @@ public class matriz {
             tempCol.setGenero(ing.getGenero());
 
             //aca pongo los punteros de mis columnas y filas creadas
-            inicioCol.setDerecha(tempCol);
-            tempCol.setIzquierda(inicioCol);
-            inicioFila.setAbajo(tempFi);
-            tempFi.setDerecha(tempFi);
+            inicioCol=tempCol;
+            //tempCol.setIzquierda(inicioCol);
+            inicioFila=tempFi;
+            //tempFi.setDerecha(tempFi);
 
             //aca enlazo el nodo nuevo en mis columnas creadas
             tempFi.setDerecha(ing);
             tempCol.setAbajo(ing);
             //conecto el nodo
+            ing.setIzquierda(tempFi);
+            ing.setDerecha(tempCol);
             ing.setLet(tempFi);
             ing.setGen(tempCol);
         }
@@ -102,12 +104,12 @@ public class matriz {
             nodo ninf = tempCol;
             //recorrer pa abajo
             if (ninf.isAbajo())
-            do { //mientras haya abajo y la letra del de abajo
-                                                     //sea inferior a
-                ninf = tempCol.getAbajo();
-                le = ninf.getLetrina();
-            }
-            while (((ninf.isAbajo())&&(letra<=le)));
+                do { //mientras haya abajo y la letra del de abajo
+                                                         //sea inferior a
+                    ninf = tempCol.getAbajo();
+                    le = ninf.getLetrina();
+                }
+                while (((ninf.isAbajo())&&(letra<=le)));
             else { // no hay abajo, entonces es l primer nodo
 
             }
@@ -135,6 +137,8 @@ public class matriz {
             ninf.setAbajo(ing);
             ing.setArriba(ninf);
 
+            System.err.println(ninf.getArriba());
+
             return ing;
         }
 
@@ -149,6 +153,26 @@ public class matriz {
         else
             return false;
     }
+
+    public nodo buscarPorFila(char C, String S){
+        nodo mj = null;
+        nodo temp=inicioFila;
+        while ((temp.isAbajo()&&(!((temp.getLetra())==C)))){
+            if (temp.getLetra()==C){
+                mj = temp;
+                break;
+            }
+            temp = temp.getAbajo();
+        }
+
+        while(temp.isDerecha()){
+            if (temp.getGenero().equals(S))
+                return temp;
+            temp = temp.getDerecha();
+        } 
+        return temp;
+    }
+
 
     nodoFila buscarFila(char C){
         nodoFila temp=inicioFila;
