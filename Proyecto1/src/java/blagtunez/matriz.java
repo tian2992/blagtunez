@@ -49,7 +49,7 @@ public class matriz {
             ing.setArriba(tempCol);
             ing.setLet(tempFi);
             ing.setGen(tempCol);
-            
+
             return ing;
         }
         else { //aqui viene lo bueno, no esta vacia
@@ -58,7 +58,7 @@ public class matriz {
 
             String  generoDeNodo = ing.getGenero();
             char    letraDeNodo  = ing.getLetra();
-            
+
             nodoCol columnaPropuesta = buscarOCrearColumna(generoDeNodo);
 
             if (columnaPropuesta == null){
@@ -115,9 +115,12 @@ public class matriz {
     public nodo recorrerColumnaAbajo(nodo n, char C){
         nodo nodoTemp = n;
         while (nodoTemp.isAbajo()){
-            if (nodoTemp.getLetra()>C){
-                return nodoTemp.getArriba();
+            if (nodoTemp.getLetra()==C){
+                return nodoTemp;
             }
+            //else if (nodoTemp.getLetra()>C){
+            //    return nodoTemp.getArriba();
+            //}
             nodoTemp = nodoTemp.getAbajo();
         }
         return nodoTemp;
@@ -127,9 +130,12 @@ public class matriz {
     public nodo recorrerFilaDerecha(nodo n, String ge){
         nodo nodoTemp=n;
         while (nodoTemp.isDerecha()){
-            if (nodoTemp.getDerecha().getGenero().compareToIgnoreCase(ge)>0){
-                return nodoTemp.getDerecha();
+            if (nodoTemp.getGenero().equalsIgnoreCase(ge)){
+                return nodoTemp;
             }
+            //else if (nodoTemp.getDerecha().getGenero().compareToIgnoreCase(ge)>0){
+            //    return nodoTemp.getDerecha();
+            //}
             nodoTemp = nodoTemp.getDerecha();
         }
         return nodoTemp;
@@ -138,10 +144,6 @@ public class matriz {
     public nodoCol buscarOCrearColumna(String generoDeNodo){
 
         nodoCol columnaPropuesta = buscarColumna(generoDeNodo);
-
-        if (columnaPropuesta.getGenero().equalsIgnoreCase(generoDeNodo)){ //columnaPropuesta si contiene la columna con genero igual.
-            return columnaPropuesta;
-        }
 
         if (columnaPropuesta == null){ //no se encontro match exacto se usa coPuntoDeInsercion
             nodoCol colAUsar = new nodoCol(generoDeNodo);
@@ -166,17 +168,15 @@ public class matriz {
                 //columnaPropuesta = colAUsar;
                 return colAUsar;
             }
+        }else  if (columnaPropuesta.getGenero().equalsIgnoreCase(generoDeNodo)){ //columnaPropuesta si contiene la columna con genero igual.
+            return columnaPropuesta;
         }
-        
+
         return null;
     }
 
     public nodoFila buscarOCrearFila(char C){
         nodoFila filaPropuesta = buscarFila(C);
-
-        if (filaPropuesta.getLetra()==C){
-            return filaPropuesta;
-        }
 
         if (filaPropuesta == null){
             nodoFila filAUsar = new nodoFila(C);
@@ -200,7 +200,9 @@ public class matriz {
 
                 return filAUsar;
             }
-        } 
+        } if (filaPropuesta.getLetra()==C){
+            return filaPropuesta;
+        }
 
         return null;
     }
@@ -208,7 +210,7 @@ public class matriz {
     public nodoCol buscarColumna(String gen){
         nodoCol temp =  inicioCol;
         coPuntoInsercion = null;
-        while ((temp.isDerecha())){
+        while (temp!=null){
             if(temp.getGenero().compareToIgnoreCase(gen)==0){ //si es el mismo, match perfecto
                 return temp;
             }
@@ -223,12 +225,12 @@ public class matriz {
 
     public nodoFila buscarFila(char C){
         nodoFila temp = inicioFila;
-        if(Character.toLowerCase(temp.getLetra())==Character.toLowerCase(C)){ //ataque preventivo
+        if(temp.getLetra()==C){ //ataque preventivo
             return temp;
         }
         fiPuntoInsercion = null;
-        while (temp.isAbajo()){
-            if(Character.toLowerCase(temp.getLetra())==Character.toLowerCase(C)){
+        while (temp!=null){
+            if(temp.getLetra()==C){
                 return temp;
             }
             else if (temp.getLetra()<C){
@@ -236,6 +238,19 @@ public class matriz {
             }
             temp = temp.getAbajo();
         }
+        return null;
+    }
+
+    public nodo buscarNodo(char C, String s){
+        nodoCol colPro = buscarColumna(s);
+        nodoFila filPro= buscarFila(C);
+
+        nodo recAb = recorrerColumnaAbajo(colPro,C);
+        nodo recDer= recorrerFilaDerecha(filPro,s);
+        if (recAb.equals(recDer)){
+            return recAb; //porque le tengo preferencia
+        }
+        
         return null;
     }
 
