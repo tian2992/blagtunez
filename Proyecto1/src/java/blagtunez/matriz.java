@@ -61,29 +61,87 @@ public class matriz {
             
             nodoCol columnaPropuesta = buscarOCrearColumna(generoDeNodo);
 
-            if (columnaPropuesta == null)
-                throw new Exception("BLAG!, matriz corrupta, algo malo paso");
+            if (columnaPropuesta == null){
+                throw new Exception("BLAG!, columna mala corrupta, algo malo paso insertando "+ing);
+            }
 
             //ya por aca, sabemos que columnaPropuesta tiene nuestro nodo
 
-            nodoFila filaPropuesta = buscarFila(letraDeNodo);
+            nodoFila filaPropuesta = buscarOCrearFila(letraDeNodo);
 
-            if (filaPropuesta == null)
-                throw new Exception("BLAG!, matriz corrupta, algo malo paso");
+            if (filaPropuesta == null){
+                throw new Exception("BLAG!, fila mala corrupta, algo malo paso insertando "+ing);
+            }
+            //ahora toca buscar por filas y columnas todos los nodos a los que hay que conectar
 
+            //toca buscar por columnas por la izquierda
+            //nodoCol cotm = columnaPropuesta;
+            //boolean colfound = false;
+            nodo linkArriba = recorrerColumnaAbajo(columnaPropuesta,letraDeNodo);
 
+            nodo linkIzquierda = recorrerFilaDerecha(filaPropuesta,generoDeNodo);
 
-            //para ir a buscar los nodos siguientes, hay que buscar buscarcolumna.buscarLetra=!null
+            //vamos a enlazar los nodos, yay!
 
-            return null;
+            //primero le ponemos los generos a nuestro nodo a ingresar
+
+            ing.setArriba(linkArriba);
+            ing.setAbajo(linkArriba.getAbajo());
+
+            ing.setIzquierda(linkIzquierda);
+            ing.setDerecha(linkIzquierda.getDerecha());
+
+            ing.setGen(columnaPropuesta);
+            ing.setLet(filaPropuesta);
+
+            //ahora lo insertamos a la matrix
+
+            if (linkIzquierda.isDerecha())
+                linkIzquierda.getDerecha().setIzquierda(ing);
+            linkIzquierda.setDerecha(ing);
+
+            if (linkArriba.isAbajo())
+                linkArriba.getAbajo().setArriba(ing);
+            linkArriba.setAbajo(ing);
+
+            //exito :D
+
+            return ing;
         }
 
         //algo muy malo debio haber pasado :(
     }
 
+    public nodo recorrerColumnaAbajo(nodo n, char C){
+        nodo nodoTemp = n;
+        while (nodoTemp.isAbajo()){
+            if (nodoTemp.getLetra()>C){
+                return nodoTemp.getArriba();
+            }
+            nodoTemp = nodoTemp.getAbajo();
+        }
+        return nodoTemp;
+
+    }
+
+    public nodo recorrerFilaDerecha(nodo n, String ge){
+        nodo nodoTemp=n;
+        while (nodoTemp.isDerecha()){
+            if (nodoTemp.getDerecha().getGenero().compareToIgnoreCase(ge)>0){
+                return nodoTemp.getDerecha();
+            }
+            nodoTemp = nodoTemp.getDerecha();
+        }
+        return nodoTemp;
+    }
+
     public nodoCol buscarOCrearColumna(String generoDeNodo){
 
         nodoCol columnaPropuesta = buscarColumna(generoDeNodo);
+
+        if (columnaPropuesta.getGenero().equalsIgnoreCase(generoDeNodo)){ //columnaPropuesta si contiene la columna con genero igual.
+            return columnaPropuesta;
+        }
 
         if (columnaPropuesta == null){ //no se encontro match exacto se usa coPuntoDeInsercion
             nodoCol colAUsar = new nodoCol(generoDeNodo);
@@ -109,14 +167,16 @@ public class matriz {
                 return colAUsar;
             }
         }
-        else if (columnaPropuesta.getGenero().equalsIgnoreCase(generoDeNodo)){ //columnaPropuesta si contiene la columna con genero igual.
-            return columnaPropuesta;
-        }
+        
         return null;
     }
 
     public nodoFila buscarOCrearFila(char C){
         nodoFila filaPropuesta = buscarFila(C);
+
+        if (filaPropuesta.getLetra()==C){
+            return filaPropuesta;
+        }
 
         if (filaPropuesta == null){
             nodoFila filAUsar = new nodoFila(C);
@@ -140,10 +200,7 @@ public class matriz {
 
                 return filAUsar;
             }
-        }
-        else if (filaPropuesta.getLetra()==C){
-            return filaPropuesta;
-        }
+        } 
 
         return null;
     }
@@ -166,9 +223,12 @@ public class matriz {
 
     public nodoFila buscarFila(char C){
         nodoFila temp = inicioFila;
+        if(Character.toLowerCase(temp.getLetra())==Character.toLowerCase(C)){ //ataque preventivo
+            return temp;
+        }
         fiPuntoInsercion = null;
         while (temp.isAbajo()){
-            if(temp.getLetra()==C){
+            if(Character.toLowerCase(temp.getLetra())==Character.toLowerCase(C)){
                 return temp;
             }
             else if (temp.getLetra()<C){
