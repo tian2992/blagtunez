@@ -46,9 +46,11 @@ public class testServlet extends HttpServlet {
             matrix.agregarNodo(new nodoEl('d',"pop"));
             matrix.agregarNodo(new nodoEl('e',"rock"));
 
+            
+
             //nodo q = matrix.buscarPorFila('c',"pop");
 
-            nodo q = matrix.gugel('c',"pop");
+            nodo q = null ;
             out.println("hora de la hora");
 
             out.println(imprenta(q));
@@ -69,7 +71,12 @@ public class testServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             */
-        } finally { 
+        }
+        catch (Exception e){
+            out.println(e.toString());
+            out.close();
+        }
+        finally {
             out.close();
         }
     } 

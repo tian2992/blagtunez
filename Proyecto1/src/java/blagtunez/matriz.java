@@ -1,29 +1,36 @@
 package blagtunez;
 
+/**
+ * Enter The Matrix
+ * @author tian
+ */
 public class matriz {
 
-    nodoCol     inicioCol;
-    nodoFila    inicioFila;
+    private nodoCol     inicioCol;
+    private nodoFila    inicioFila;
 
-    nodoCol     finHeader;
-    nodoCol     finFila;
 
-    nodoFila    fiPuntoInsercion;
-    nodoCol     coPuntoInsercion;
+    private nodoFila    fiPuntoInsercion;
+    private nodoCol     coPuntoInsercion;
 
 
 
     matriz(){
         inicioCol       = new nodoCol();
         inicioFila      = new nodoFila();
-
     }
 
-    public nodo agregarNodo(nodoEl ing){
+
+     /**
+     * Deberia poder añadir nodos, pero no sirve de nada.
+      * @param ing
+      * @return el nodo si todo salio bien, null si algo malo paso
+     */
+    public nodo agregarNodo(nodoEl ing) throws Exception{
         if (this.esVacia()){
             //ya que esta vacia, debo crear filas y columnas
             nodoFila tempFi = new nodoFila();
-            tempFi.setLetra(ing.getLetrina());
+            tempFi.setLetra(ing.getLetra());
 
             nodoCol tempCol = new nodoCol ();
             tempCol.setGenero(ing.getGenero());
@@ -47,161 +54,140 @@ public class matriz {
         }
         else { //aqui viene lo bueno, no esta vacia
 
-            //vamos a comenzar a buscar por filas
-            nodoFila tempFi;
+            //comenzamos a buscar si existe una columna con el genero del nodo
 
-            char letra = ing.getLetrina();
-            tempFi =  buscarFila(letra);
-
-            if (tempFi==null){ //significa que la fila no existe, hay que crearla
-                boolean piNulo = true; //pinulo dice si el siguiente de Punto de insercion es nulo
-                if (fiPuntoInsercion.getAbajo() == null)
-                    piNulo = false;
-
-                nodoFila fiPuntoInsercionSig=null;
-                
-                if (piNulo)
-                    fiPuntoInsercionSig = (nodoFila)fiPuntoInsercion.getAbajo();
-                
-                tempFi = new nodoFila(letra);
-                if (piNulo)
-                    tempFi.setAbajo(fiPuntoInsercionSig); //le ponemos apuntadores a el nodo
-                tempFi.setArriba(fiPuntoInsercion);
-
-                fiPuntoInsercion.setAbajo(tempFi);  //le ponemos apuntadores a de donde lo sacamos
-                if (piNulo)
-                    fiPuntoInsercionSig.setArriba(tempFi);
-            }
-            // ya buscamos por fila, la fila correcta deberia ser tempFi
+            String  generoDeNodo = ing.getGenero();
+            char    letraDeNodo  = ing.getLetra();
             
-            nodoCol tempCol;
+            nodoCol columnaPropuesta = buscarOCrearColumna(generoDeNodo);
 
-            String genero = ing.getGenero();
-            tempCol =  buscarColumna(genero);
+            if (columnaPropuesta == null)
+                throw new Exception("BLAG!, matriz corrupta, algo malo paso");
 
-            if (tempCol==null){ //significa que la fila no existe, hay que crearla
-                boolean piNulo = true; //pinulo dice si el siguiente de Punto de insercion es nulo
-                if (coPuntoInsercion.getDerecha() == null)
-                    piNulo = false;
+            //ya por aca, sabemos que columnaPropuesta tiene nuestro nodo
 
-                nodoFila coPuntoInsercionSig=null;
+            nodoFila filaPropuesta = buscarFila(letraDeNodo);
 
-                if (piNulo)
-                    coPuntoInsercionSig = (nodoFila)coPuntoInsercion.getDerecha();
+            if (filaPropuesta == null)
+                throw new Exception("BLAG!, matriz corrupta, algo malo paso");
 
-                tempCol = new nodoCol(genero);
-                if (piNulo)
-                    tempCol.setDerecha(coPuntoInsercionSig); //le ponemos apuntadores a el nodo
-                tempCol.setIzquierda(coPuntoInsercion);
 
-                coPuntoInsercion.setDerecha(tempCol);  //le ponemos apuntadores a de donde lo sacamos
-                if (piNulo)
-                    coPuntoInsercionSig.setIzquierda(tempCol);
-            }
 
-            //entonces ya tenemos en tempCol y en tempFi nuestros nodos coordenados
-            char le='a';
-            nodo ninf = tempCol;
-            //recorrer pa abajo
-            if (ninf.isAbajo())
-                do { //mientras haya abajo y la letra del de abajo
-                                                         //sea inferior a
-                    ninf = tempCol.getAbajo();
-                    le = ninf.getLetrina();
-                }
-                while (((ninf.isAbajo())&&(letra<=le)));
-            else { // no hay abajo, entonces es l primer nodo
+            //para ir a buscar los nodos siguientes, hay que buscar buscarcolumna.buscarLetra=!null
 
-            }
-
-            //supositoriamente n deberia tener el nodo con letra igual o menor a 'le'
-
-            if (ninf.getLetrina()==letra) //si supositoriamente existe, ahi esta :D
-                return ninf;
-
-            //tonces solo tenemos el espacio para añadir
-            //toca recorrer a lo horizontal
-
-            String ge = genero;
-            nodo nec = tempFi;
-
-            while (nec.isDerecha()){
-                nec = nec.getDerecha();
-            }
-            //supuestamente nec tiene lo mas extremo de la columna
-            // y ninf es el que tiene letra inferior a
-
-            nec.setAbajo(ing);
-            ing.setArriba(nec);
-            
-            ninf.setDerecha(ing);
-            ing.setIzquierda(ninf);
-
-            //System.err.println(ninf.getArriba());
-
-            return ing;
+            return null;
         }
 
         //algo muy malo debio haber pasado :(
     }
 
+    public nodoCol buscarOCrearColumna(String generoDeNodo){
+
+        nodoCol columnaPropuesta = buscarColumna(generoDeNodo);
+
+        if (columnaPropuesta == null){ //no se encontro match exacto se usa coPuntoDeInsercion
+            nodoCol colAUsar = new nodoCol(generoDeNodo);
+
+            if(coPuntoInsercion==null){ // o sea el primer nodoCol es siguiente a el nodo Nuevo
+                nodoCol exInicio = inicioCol;
+                exInicio.setIzquierda(colAUsar);
+                colAUsar.setDerecha(exInicio);
+                inicioCol = colAUsar;
+                // columnaPropuesta = colAUsar;
+                return colAUsar;
+            }
+            else{ //o sea punto insercion tiene el nodo anterior
+                if (coPuntoInsercion.isDerecha()) //asegurando que haya nodo a la derecha
+                    colAUsar.setDerecha(coPuntoInsercion.getDerecha());
+                colAUsar.setIzquierda(coPuntoInsercion);
+
+                if (coPuntoInsercion.isDerecha())
+                    coPuntoInsercion.getDerecha().setIzquierda(colAUsar);
+                coPuntoInsercion.setDerecha(colAUsar);
+
+                //columnaPropuesta = colAUsar;
+                return colAUsar;
+            }
+        }
+        else if (columnaPropuesta.getGenero().equalsIgnoreCase(generoDeNodo)){ //columnaPropuesta si contiene la columna con genero igual.
+            return columnaPropuesta;
+        }
+        return null;
+    }
+
+    public nodoFila buscarOCrearFila(char C){
+        nodoFila filaPropuesta = buscarFila(C);
+
+        if (filaPropuesta == null){
+            nodoFila filAUsar = new nodoFila(C);
+
+            if (fiPuntoInsercion==null){
+                nodoFila exInicio = inicioFila;
+                exInicio.setArriba(filAUsar);
+                filAUsar.setAbajo(exInicio);
+                inicioFila = filAUsar;
+
+                return filAUsar;
+            }
+            else {
+                if (fiPuntoInsercion.isAbajo())
+                    filAUsar.setAbajo(fiPuntoInsercion.getAbajo());
+                filAUsar.setArriba(fiPuntoInsercion);
+
+                if (fiPuntoInsercion.isAbajo())
+                    fiPuntoInsercion.getAbajo().setArriba(filAUsar);
+                fiPuntoInsercion.setAbajo(filAUsar);
+
+                return filAUsar;
+            }
+        }
+        else if (filaPropuesta.getLetra()==C){
+            return filaPropuesta;
+        }
+
+        return null;
+    }
+
+    public nodoCol buscarColumna(String gen){
+        nodoCol temp =  inicioCol;
+        coPuntoInsercion = null;
+        while ((temp.isDerecha())){
+            if(temp.getGenero().compareToIgnoreCase(gen)==0){ //si es el mismo, match perfecto
+                return temp;
+            }
+            else if (temp.getGenero().compareToIgnoreCase(gen)<0){ //mientras el genero de temp sea alfabeticamente inferior a gen
+                coPuntoInsercion = temp;
+            }
+            temp = temp.getDerecha();
+        }
+
+        return null;
+    }
+
+    public nodoFila buscarFila(char C){
+        nodoFila temp = inicioFila;
+        fiPuntoInsercion = null;
+        while (temp.isAbajo()){
+            if(temp.getLetra()==C){
+                return temp;
+            }
+            else if (temp.getLetra()<C){
+                fiPuntoInsercion = temp;
+            }
+            temp = temp.getAbajo();
+        }
+        return null;
+    }
+
+    /**
+     * Ver si esVacia o no
+     * @return true si es vacia, false si no lo es
+     */
     public boolean esVacia(){
         if ((inicioCol.getAbajo() == null) || (inicioFila.getDerecha() == null))
             return true;
         else
             return false;
-    }
-
-    public nodo buscarPorFila(char C, String S){
-        nodo mj = null;
-        nodo temp=inicioFila;
-        while ((temp.isAbajo()&&(!((temp.getLetra())==C)))){
-            if (temp.getLetra()==C){
-                mj = temp;
-                break;
-            }
-            temp = temp.getAbajo();
-        }
-
-        while(temp.isDerecha()){
-            if (temp.getGenero().equals(S))
-                return temp;
-            temp = temp.getDerecha();
-        } 
-        return temp;
-    }
-
-    nodoEl gugel(char C, String S){
-        return buscar(C,S);
-    }
-
-    nodoEl buscar(char C, String S){
-
-        return null;
-    }
-
-    nodoFila buscarFila(char C){
-        nodoFila temp=inicioFila;
-        while ((temp.isAbajo())){
-            if (temp.getLetra()==C)
-                return temp;
-            temp = (nodoFila)temp.getAbajo();
-        }
-        fiPuntoInsercion = temp;
-        // fipuntoInsercion = alguna onda
-        return null; //no lo encontramos, por eso tiramos null
-    }
-
-    nodoCol buscarColumna(String s){ //la misma onda que con las filas
-
-        nodoCol temp=inicioCol;
-        while ((temp.isDerecha())){
-            if (temp.getGenero().equals(s))
-                return temp;
-            temp = (nodoCol)temp.getDerecha();
-        }
-        coPuntoInsercion = temp;
-        return null;
     }
 
 }

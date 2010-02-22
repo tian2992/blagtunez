@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package blagtunez;
 
 import java.util.Collection;
@@ -11,7 +6,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- *
+ * Es la implementación de la lista enlazada acorde a java.util.List, no sirve
+ * @param <E> la clase de la lista
  * @author tian
  */
 public class liston<E> implements java.util.List  {

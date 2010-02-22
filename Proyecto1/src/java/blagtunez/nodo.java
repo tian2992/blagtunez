@@ -6,13 +6,13 @@ package blagtunez;
  */
 public class nodo {
 
-    nodo arriba     = null;
-    nodo abajo      = null;
-    nodo izquierda  = null;
-    nodo derecha    = null;
+    private nodo arriba     = null;
+    private nodo abajo      = null;
+    private nodo izquierda  = null;
+    private nodo derecha    = null;
 
-    String genero = "";
-    char letrina;
+    private String genero   = "";
+    private char letrina;
 
     public String toString(){
         return "Letra: "+getLetrina()+" - Genero: "+getGenero();
