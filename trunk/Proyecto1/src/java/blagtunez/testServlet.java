@@ -41,11 +41,10 @@ public class testServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             matrix = new matriz();
-            matrix.agregarNodo(new nodoEl('c',"rock"));
-            matrix.agregarNodo(new nodoEl('c',"pop"));
+            out.println(imprenta(matrix.agregarNodo(new nodoEl('c',"rock"))));
+            out.println(imprenta(matrix.agregarNodo(new nodoEl('c',"pop"))));
             matrix.agregarNodo(new nodoEl('d',"pop"));
             matrix.agregarNodo(new nodoEl('e',"rock"));
-
             
 
             //nodo q = matrix.buscarPorFila('c',"pop");
@@ -53,7 +52,7 @@ public class testServlet extends HttpServlet {
             nodo q = null ;
             out.println("hora de la hora");
 
-            out.println(imprenta(q));
+            //out.println(imprenta());
 
             /*
             out.println(songi.getNombre());
