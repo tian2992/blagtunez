@@ -47,12 +47,11 @@ public class testServlet extends HttpServlet {
             matrix.agregarNodo(new nodoEl('e',"rock"));
             
 
-            //nodo q = matrix.buscarPorFila('c',"pop");
+            nodo q = matrix.buscarNodo('c',"pop");
 
-            nodo q = null ;
             out.println("hora de la hora");
 
-            //out.println(imprenta());
+            out.println(imprenta(q));
 
             /*
             out.println(songi.getNombre());
