@@ -2,14 +2,14 @@ package blagtunez;
 
 
 /**
- *
+ * Nodo diseñado para los elementos de la matriz, solo tiene la letra inicial y el genero
  * @author tian
  */
 public class nodoEl extends nodo {
-    nodoFila let;
-    nodoHead gen;
+    private nodoFila let;
+    private nodoHead gen;
 
-    java.util.List<artista> payload;
+    private java.util.List<artista> payload;
 
     nodoEl(){
         if (liston.noFuncioListon)
