@@ -38,5 +38,9 @@ public class UserManager implements java.io.Serializable {
         }
         return false;
     }
+    static public boolean añadirUser(Usuario u){
+        setup();
+        return lisUser.add(u);
+    }
 
 }
