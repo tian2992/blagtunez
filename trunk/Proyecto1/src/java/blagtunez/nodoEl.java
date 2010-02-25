@@ -12,10 +12,10 @@ public class nodoEl extends nodo {
     private java.util.List<artista> payload;
 
     nodoEl(){
-        if (liston.noFuncioListon)
-            payload = new java.util.ArrayList<artista>();
-        else
+        if (liston.FuncioListon)
             payload = new liston<artista>();
+        else
+            payload = new java.util.ArrayList<artista>();
     }
 
     nodoEl(char l, String ge){

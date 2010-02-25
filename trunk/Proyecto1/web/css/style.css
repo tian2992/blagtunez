@@ -1,0 +1,46 @@
+/* 
+    Document   : style
+    Created on : 24-Feb-2010, 08:08:49
+    Author     : tian
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
+    background-color:#FFF;
+    background-image:url("bg.png");
+    background-repeat:repeat-x;
+    background-position:top center;
+}
+#loginForm{
+    border:#666 1px solid;
+    padding:0.5em;
+}
+.creaCuenta, a .creaCuenta{
+    text-decoration:underline;
+    text-align:center;
+    float:left;
+    width:auto;
+    font-size:2em;
+    color:#FFF;
+    padding:2em;
+    background-color:#705B35;
+    border: #C7B07B 3px solid;
+    font-family: "Museo","Helvetica Neue",sans-serif;
+}
+.explica {
+    font-size:1.5em;
+    font-family:"Museo","Helvetica Neue",sans-serif;
+}
+#main {
+    margin-top:4em;
+}
+#sidebar{
+    margin-top:4em;
+    font-size:larger;
+}
+h1.greet {
+    font-size:4em;
+    font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
+}

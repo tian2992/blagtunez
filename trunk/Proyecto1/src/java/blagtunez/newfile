@@ -1,0 +1,8 @@
+
+       <% } else { %>
+
+        Bienvenido, <% out.print(userVisitor.getNombre()); %>
+
+        <a href="userInfo.jsp">Información del Usuario</a>
+
+       <% } %>

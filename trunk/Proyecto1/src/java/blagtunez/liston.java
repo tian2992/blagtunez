@@ -12,8 +12,41 @@ import java.util.ListIterator;
  */
 public class liston<E> implements java.util.List  {
 
-    static boolean noFuncioListon = false; //TODO: cambiar esto cuando funcione
+    class Contenedor{
+    Contenedor sig;
+    Contenedor ant;
+
+    E payload;
+
+        public Contenedor getAnt() {
+            return ant;
+        }
+
+        public void setAnt(Contenedor ant) {
+            this.ant = ant;
+        }
+
+        public E getPayload() {
+            return payload;
+        }
+
+        public void setPayload(E payload) {
+            this.payload = payload;
+        }
+
+        public Contenedor getSig() {
+            return sig;
+        }
+
+        public void setSig(Contenedor sig) {
+            this.sig = sig;
+        }
+
+    }
+
+    static boolean FuncioListon = false; //TODO: cambiar esto cuando funcione
     
+    private Contenedor ini, fin;
 
     public int size() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -68,7 +101,9 @@ public class liston<E> implements java.util.List  {
     }
 
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ini = null;
+        fin = null;
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public Object get(int index) {
