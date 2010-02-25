@@ -9,7 +9,7 @@
     <div class="span-7 prepend-1 append-1 last">
         <p>
         Hola: <jsp:getProperty name="usuario" property="username" />
-
+        Hola <% out.print(usuario.getUsername()); %>
         </p>
     </div>
   </div>

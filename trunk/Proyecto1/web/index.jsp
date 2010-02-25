@@ -2,7 +2,7 @@
 <%@ include file="standardHeader.xhtml" %>
 
   <div class="span-15" id="main">
-      <h1 class="greet">Bienvenido a Blagtunez</h1>
+      <h1 class="greet">Bienvenido a <span class="rojo">Blag.fm</span></h1>
       <p class="explica">
           Blagtunez es una Aplicacion web diseñada para organizar tu música.
       </p>
@@ -13,7 +13,7 @@
           <li>y mucho mas</li>
       </ul>
       <div class="creaCuenta">
-          Ingresa Aqui para crear tu Cuenta.
+          <a href="crearCuenta.jsp">Ingresa Aqui para crear tu Cuenta.</a>
       </div>
   </div>
   <div class="span-9 last" id="sidebar">
