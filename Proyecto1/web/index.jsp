@@ -1,19 +1,31 @@
-<%-- 
-    Document   : index
-    Created on : 18-Feb-2010, 13:17:02
-    Author     : tian
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="standardHeader.xhtml" %>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+  <div class="span-15" id="main">
+      <h1 class="greet">Bienvenido a Blagtunez</h1>
+      <p class="explica">
+          Blagtunez es una Aplicacion web diseñada para organizar tu música.
+      </p>
+      <ul class="explica">
+          <li>Permite añadir y borrar Artistas</li>
+          <li>Tiene Autenticación</li>
+          <li>Puede recibir XML de entrada</li>
+          <li>y mucho mas</li>
+      </ul>
+      <div class="creaCuenta">
+          Ingresa Aqui para crear tu Cuenta.
+      </div>
+  </div>
+  <div class="span-9 last" id="sidebar">
+    <div class="span-7 prepend-1 append-1 last">
+        <h2><span class="small">Si ya tienes cuenta</span> <br />Inicia Sesión</h2>
+    </div>
+    <div class="span-7 prepend-1 append-1 last">
+        <form id="loginForm" name="loginForm" method="POST" action="login.jsp">
+        Usuario: &nbsp;  <input type="text" name="username" size="20"><br/>
+        Password: <input type="password" name="password" size="20"><br/>
+        <input type="submit" value="Login">
+        </form>
+    </div>
+  </div>
+<%@ include file="standardFooter.xhtml" %>

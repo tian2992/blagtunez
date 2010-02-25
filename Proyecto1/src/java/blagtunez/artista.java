@@ -13,10 +13,10 @@ public class artista implements java.io.Serializable {
     java.util.List<cancion> lisCan;
 
     artista(){
-        if (liston.noFuncioListon)
-            lisCan = new java.util.ArrayList<cancion>();
-        else
+        if (liston.FuncioListon)
             lisCan = new liston<cancion>();
+        else
+            lisCan = new java.util.ArrayList<cancion>();
     }
 
 

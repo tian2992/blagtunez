@@ -251,6 +251,35 @@ public class matriz {
             return recAb; //porque le tengo preferencia
         }
         
+        return null; //no se encontro
+    }
+
+    public nodoEl borrarNodo(nodoEl n){
+        return borrarNodo(n);
+    }
+
+    public nodoEl borrarNodo(char C,String s){
+
+        nodoCol colPro = buscarColumna(s);
+        nodoFila filPro= buscarFila(C);
+
+        nodo recAb = recorrerColumnaAbajo(colPro,C);
+        nodo recDer= recorrerFilaDerecha(filPro,s);
+        if (recAb.equals(recDer)){
+            nodo iz = recAb.getIzquierda();
+            nodo ar = recDer.getArriba();
+
+            if (recAb.isDerecha())
+                recAb.getDerecha().setIzquierda(iz);
+            iz.setDerecha(recAb.getDerecha());
+
+            if (recDer.isAbajo())
+                recDer.getAbajo().setArriba(recDer.getArriba());
+            ar.setAbajo(recDer.getAbajo());
+
+            return (nodoEl)recDer;
+        }
+
         return null;
     }
 
