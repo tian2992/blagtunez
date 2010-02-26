@@ -2,10 +2,9 @@
     Document   : style
     Created on : 24-Feb-2010, 08:08:49
     Author     : tian
-    Description:
-        Purpose of the stylesheet follows.
+    Description: Estilo de Blag.fm
 */
-
+/* ================ Estilos Basicos de Texto ================*/
 body {
     background-color:#FFF;
     background-image:url("bg.png");
@@ -16,6 +15,10 @@ body, p, h1, h2, h3, h4, li {
     font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
     color: #24000f;
 }
+h1.greet {
+    font-size:4em;
+    font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
+}
 .rojo { color:#E40000;}
 #main, .explica, .explica li {
    font-family:"Museo","Helvetica Neue",sans-serif;
@@ -23,22 +26,6 @@ body, p, h1, h2, h3, h4, li {
 #footer{
     font-size:medium;
     padding:2em 0;
-}
-#loginForm{
-    border:#666 1px solid;
-    padding:0.5em;
-}
-.formCaptions .formCapt{
-    float:left;
-}
-.formCaptions input{
-    float:right;
-}
-.creaCuenta a:link{
-    font-family: "Museo","Helvetica Neue",sans-serif;
-    color:#FFF;
-    text-decoration:underline;
-
 }
 .creaCuenta{
     text-align:center;
@@ -49,17 +36,19 @@ body, p, h1, h2, h3, h4, li {
     background-color:#705B35;
     border: #C7B07B 3px solid;
 }
+.creaCuenta a:link, .creaCuenta a:visited, .creaCuenta a:active{
+    font-family: "Museo","Helvetica Neue",sans-serif;
+    color:#FFF;
+    text-decoration:underline;
+}
 .explica {
     font-size:1.5em;
 }
+/* ============ Seccion de Estructura de la pagina ================ */
 #main {
     margin-top:4em;
 }
 #sidebar {
     margin-top:4em;
     font-size:larger;
-}
-h1.greet {
-    font-size:4em;
-    font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
 }

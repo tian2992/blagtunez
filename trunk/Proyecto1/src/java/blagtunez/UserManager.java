@@ -5,8 +5,8 @@ package blagtunez;
  * @author tian
  */
 public class UserManager implements java.io.Serializable {
-    private static java.util.List<Usuario> lisUser;
-
+    static java.util.List<Usuario> lisUser;
+    
     static void setup(){
         if (lisUser == null){
             if (liston.FuncioListon)
@@ -19,6 +19,7 @@ public class UserManager implements java.io.Serializable {
             ad.setNombre("Administrador");
             ad.setUsername("admin");
             ad.setPass("admin");
+            ad.setEMail("tian@localhost");
             lisUser.add(ad);
         }
     }
@@ -38,9 +39,22 @@ public class UserManager implements java.io.Serializable {
         }
         return false;
     }
-    static public boolean añadirUser(Usuario u){
+    static public boolean anadirUser(Usuario u){
         setup();
         return lisUser.add(u);
+        /*if (isValido(u))
+            
+        else
+            return false; */
+    }
+
+    static public boolean isValido(Usuario u){
+        if ((u.getUsername() != null) && (u.getPass()!=null) && (u.getNombre()!=null) && (u.getEMail()!=null)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

@@ -5,7 +5,7 @@ package blagtunez;
  * Nodo diseñado para los elementos de la matriz, solo tiene la letra inicial y el genero
  * @author tian
  */
-public class nodoEl extends nodo {
+public class nodoEl extends nodo implements java.io.Serializable{
     private nodoFila let;
     private nodoHead gen;
 
@@ -19,6 +19,7 @@ public class nodoEl extends nodo {
     }
 
     nodoEl(char l, String ge){
+        super();
         setLetrina(l);
         setGenero(ge);
     }

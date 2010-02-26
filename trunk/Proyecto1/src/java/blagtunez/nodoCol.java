@@ -3,7 +3,7 @@ package blagtunez;
  * Nodo especializado para las columnas
  * @author tian
  */
-public class nodoCol extends nodoHead {
+public class nodoCol extends nodoHead implements java.io.Serializable {
     nodoCol(){}
     nodoCol(String g){
         setGenero(g);
