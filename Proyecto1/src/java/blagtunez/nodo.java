@@ -4,7 +4,7 @@ package blagtunez;
  *
  * @author tian
  */
-public class nodo {
+public class nodo implements java.io.Serializable{
 
     private nodo arriba     = null;
     private nodo abajo      = null;

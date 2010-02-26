@@ -6,3 +6,18 @@
         <a href="userInfo.jsp">Información del Usuario</a>
 
        <% } %>
+
+
+#loginForm{
+    border:#666 1px solid;
+    margin:0.5em 0;
+}
+.formCaptions .formCapt{
+    width:150px;
+    float:left;
+}
+.formCaptions input{
+    width:120px;
+    float:right;
+    text-align: right;
+}

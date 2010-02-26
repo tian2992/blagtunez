@@ -16,6 +16,11 @@ public class Usuario implements java.io.Serializable {
     public Usuario(){
     }
 
+    @Override
+    public String toString(){
+        return getUsername() + " - " + getEMail();
+    }
+
     /**
      * @return the nombre
      */

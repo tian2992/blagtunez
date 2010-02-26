@@ -22,8 +22,8 @@
     </div>
     <div class="span-7 prepend-1 append-1 last">
         <form id="loginForm" name="loginForm" method="POST" action="login.jsp">
-        Usuario: &nbsp;  <input type="text" name="username" size="20"><br/>
-        Password: <input type="password" name="password" size="20"><br/>
+        <label for="username">Usuario:</label> <input class="text" type="text" name="username" size="20"><br/>
+        <label for="password">Password:</label> <input class="text" type="password" name="password" size="20"><br/>
         <input type="submit" value="Login">
         </form>
     </div>

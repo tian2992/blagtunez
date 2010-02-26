@@ -3,7 +3,7 @@ package blagtunez;
  * Nodo especial para las Filas
  * @author tian
  */
-public class nodoFila extends nodoHead{
+public class nodoFila extends nodoHead implements java.io.Serializable{
     nodoFila(){}
     nodoFila(char c){
         setLetra(c);

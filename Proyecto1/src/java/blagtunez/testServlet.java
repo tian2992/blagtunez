@@ -19,13 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 public class testServlet extends HttpServlet {
 
     static matriz matrix;
+    public static String blagg = "";
 
     public void init(){
 
-    }
-
-    public String imprenta(nodo q){
-        return ("letra : "+q.getLetrina() + "\n" + "genero : "+q.getGenero());
     }
 
     /** 
@@ -35,23 +32,30 @@ public class testServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            matrix = new matriz();
-            out.println(imprenta(matrix.agregarNodo(new nodoEl('c',"rock"))));
-            out.println(imprenta(matrix.agregarNodo(new nodoEl('c',"pop"))));
-            matrix.agregarNodo(new nodoEl('d',"pop"));
-            matrix.agregarNodo(new nodoEl('e',"rock"));
-            
+            /*
+            MatrixManager matriz = new MatrixManager();
+            if (matriz.agregarArtista("Daft Punk", "Electronica"))
+                out.println("ya va uno");
+            if (matriz.agregarArtista("Timmy", "Timmi!")){
+                out.println("van dos :D");
+            }
 
-            nodo q = matrix.buscarNodo('c',"pop");
 
-            out.println("hora de la hora");
 
-            out.println(imprenta(q));
+            out.println(matriz.estadoDeMatriz());
+             *
+             * */
+            out.println(UserManager.lisUser);
+            for (Usuario us: UserManager.lisUser){
+                out.println(us);
+            }
 
             /*
             out.println(songi.getNombre());

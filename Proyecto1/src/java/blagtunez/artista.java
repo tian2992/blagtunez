@@ -19,6 +19,11 @@ public class artista implements java.io.Serializable {
             lisCan = new java.util.ArrayList<cancion>();
     }
 
+    artista(String nom){
+        super();
+        setNombre(nom);
+    }
+
 
     public String getImagen() {
         return imagen;

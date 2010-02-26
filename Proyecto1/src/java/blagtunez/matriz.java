@@ -4,7 +4,7 @@ package blagtunez;
  * Enter The Matrix
  * @author tian
  */
-public class matriz {
+public class matriz implements java.io.Serializable {
 
     private nodoCol     inicioCol;
     private nodoFila    inicioFila;
@@ -281,6 +281,48 @@ public class matriz {
         }
 
         return null;
+    }
+
+    public int contarArtistas(){
+        int contador=0;
+
+        nodo tempFi = inicioFila;
+        nodo tempAr;
+        while(tempFi!=null){
+            tempAr = tempFi.getDerecha();
+            while (tempAr!=null){
+                contador++;
+                tempAr.getDerecha();
+            }
+            tempFi = tempFi.getAbajo();
+        }
+        return contador;
+    }
+
+    /**
+     * Cuenta cuantas letras hay
+     */
+    public int contarFilas(){
+        int contador=0;
+        nodo temp = inicioFila;
+        while(temp!=null){
+            contador++;
+            temp = temp.getAbajo();
+        }
+        return contador;
+    }
+
+    /**
+     * Cuenta cuantos generos hay
+     */
+    public int contarColumnas(){
+        int contador=0;
+        nodo temp = inicioCol;
+        while(temp!=null){
+            contador++;
+            temp = temp.getDerecha();
+        }
+        return contador;
     }
 
     /**
