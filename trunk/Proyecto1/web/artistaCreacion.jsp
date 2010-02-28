@@ -4,10 +4,11 @@
 <jsp:setProperty name="arti" property="*"/>
 
 <%  //TODO: agregar solo si el usuario es administrador.
-    boolean funcio = matri.agregarArtista(arti);
-    if (funcio){%>
+    boolean funcio = matri.agregarArtista(arti); ///vamos a deshabilitar por el momento
+    funcio = true; //TODO quitar cuando matri.agregarArtista funcione bien
+    if (funcio){   %>
             <jsp:forward page="homeScreen.jsp" />
 <%      } else { %>
             <jsp:forward page="agregarArtista.jsp"><jsp:param name="error" value="si" /></jsp:forward>
 <%      }
-    } %>
+     %>

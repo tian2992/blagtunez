@@ -268,14 +268,14 @@ public class matriz implements java.io.Serializable {
         return null;
     }
 
-    public nodo buscarNodo(char C, String s){
+    public nodoEl buscarNodo(char C, String s){
         nodoCol colPro = buscarColumna(s);
         nodoFila filPro= buscarFila(C);
 
         nodo recAb = recorrerColumnaAbajo(colPro,C);
         nodo recDer= recorrerFilaDerecha(filPro,s);
         if (recAb.equals(recDer)){
-            return recAb; //porque le tengo preferencia
+            return (nodoEl)recAb; //porque le tengo preferencia
         }
         
         return null; //no se encontro
@@ -361,6 +361,48 @@ public class matriz implements java.io.Serializable {
             return true;
         else
             return false;
+    }
+
+    public java.util.List<String> getGeneros(){ //tambien deberia funcionar
+        java.util.List<String> lis;
+        if (liston.FuncioListon){
+            lis = new liston<String>();
+        }
+        else {
+            lis = new java.util.ArrayList<String>();
+        }
+        nodoCol temp = inicioCol;
+        while(temp!=null){
+            lis.add(temp.getGenero());
+            temp = temp.getDerecha();
+        }
+        if (lis.isEmpty())
+            return null;
+        return lis;
+    }
+
+    public java.util.List<artista> getArtistasPorLetra(char l){ //Hay que arreglar esto
+        java.util.List<artista> lis;
+        if (liston.FuncioListon){
+            lis = new liston<artista>();
+        }
+        else {
+            lis = new java.util.ArrayList<artista>();
+        }
+        nodoFila filoso = buscarFila(l);
+        nodoEl temp=(nodoEl)filoso.getDerecha();
+        try {
+            while(temp!=null){
+                lis.addAll(temp.getPayload());
+                temp.getDerecha();
+            }
+
+            if (lis.isEmpty())
+                return null;
+        } catch(Exception e){
+            return null;
+        }
+        return lis;
     }
 
 }
