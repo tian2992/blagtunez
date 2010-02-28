@@ -31,10 +31,57 @@ public class MatrixManager implements java.io.Serializable {
         //return agregarArtista(a.getNombre(), a.getNacionalidad(),a.getImagen());
     }
 
+    public boolean borrarArtista(artista arti){ //TODO: Hacer algo con el nodo que nos retorna la matrix
+        nodo nodel= matrix.borrarNodo(arti.getNombre().charAt(0), arti.getGenero());
+        if (nodel==null){
+            return false;
+        }
+        return true;
+    }
+
+    public java.util.List<String> listarGeneros(){
+        return matrix.getGeneros();
+    }
+
+    public artista buscarArtista(artista arti){
+        if (arti==null)
+            return null;
+        if (arti.getNombre()==null || arti.getGenero()==null)
+            return null;
+
+        nodoEl nodista = matrix.buscarNodo(arti.getNombre().charAt(0),arti.getGenero());
+
+        if (nodista == null)
+            return null;
+
+        java.util.List<artista> listin = nodista.getPayload();
+
+        if (listin==null)
+            return null;
+
+        if (!listin.isEmpty()){
+            for (artista R2D2: listin){
+                if (R2D2.getNombre().equalsIgnoreCase(arti.getNombre()) && R2D2.getGenero().equalsIgnoreCase(arti.getGenero())){
+                    return R2D2; //esto deberia de funcionar...
+                }
+            }
+        }
+        else {
+            return null;
+        }
+        
+
+        return null;
+    }
+
 
 
     public boolean agregarArtista(String art, String gen){ 
         return agregarArtista(new artista(art,gen));
+    }
+
+    public boolean esVacia(){
+        return matrix.esVacia();
     }
 
     public String estadoDeMatriz(){
