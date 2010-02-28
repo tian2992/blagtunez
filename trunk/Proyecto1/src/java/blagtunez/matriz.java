@@ -9,6 +9,8 @@ public class matriz implements java.io.Serializable {
     private nodoCol     inicioCol;
     private nodoFila    inicioFila;
 
+    private nodoCol     finCol;
+    private nodoFila    finFila;
 
     private nodoFila    fiPuntoInsercion;
     private nodoCol     coPuntoInsercion;
@@ -37,8 +39,10 @@ public class matriz implements java.io.Serializable {
 
             //aca pongo los punteros de mis columnas y filas creadas
             inicioCol=tempCol;
+            finCol = tempCol;
             //tempCol.setIzquierda(inicioCol);
             inicioFila=tempFi;
+            finFila = tempFi;
             //tempFi.setDerecha(tempFi);
 
             //aca enlazo el nodo nuevo en mis columnas creadas
@@ -49,6 +53,8 @@ public class matriz implements java.io.Serializable {
             ing.setArriba(tempCol);
             ing.setLet(tempFi);
             ing.setGen(tempCol);
+
+            arreglarFinales(); //en caso que algo salga mal
 
             return ing;
         }
@@ -105,6 +111,8 @@ public class matriz implements java.io.Serializable {
             linkArriba.setAbajo(ing);
 
             //exito :D
+            
+            arreglarFinales(); //en caso que algo salga mal
 
             return ing;
         }
@@ -125,6 +133,21 @@ public class matriz implements java.io.Serializable {
         }
         return nodoTemp;
 
+    }
+
+    public void arreglarFinales(){
+        try {
+        if(finCol.isDerecha()){ //en algun momento se nos safo el fin correcto
+            while (finCol.isDerecha())
+                finCol = finCol.getDerecha();
+        }
+        if(finFila.isDerecha()){
+            while (finFila.isAbajo()){
+                finFila = finFila.getAbajo();
+            }
+        }
+        }
+        catch (Exception e) { /*nunca deberia fallar, pero nunca se sabe */ }
     }
 
     public nodo recorrerFilaDerecha(nodo n, String ge){
@@ -159,6 +182,8 @@ public class matriz implements java.io.Serializable {
             else{ //o sea punto insercion tiene el nodo anterior
                 if (coPuntoInsercion.isDerecha()) //asegurando que haya nodo a la derecha
                     colAUsar.setDerecha(coPuntoInsercion.getDerecha());
+                else
+                    finCol=colAUsar; //no columna mas tiene, por lo tanto fin es
                 colAUsar.setIzquierda(coPuntoInsercion);
 
                 if (coPuntoInsercion.isDerecha())
@@ -192,6 +217,8 @@ public class matriz implements java.io.Serializable {
             else {
                 if (fiPuntoInsercion.isAbajo())
                     filAUsar.setAbajo(fiPuntoInsercion.getAbajo());
+                else
+                    finFila = filAUsar; //Si es el ultimo, entonces el fin de la Fila deberia ser.
                 filAUsar.setArriba(fiPuntoInsercion);
 
                 if (fiPuntoInsercion.isAbajo())
