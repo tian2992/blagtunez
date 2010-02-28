@@ -1,0 +1,69 @@
+n most HTML forums, the user will have text to describe the input field, followed by the field itself. If you have more than one input field then there can be issues with the input boxes where they don’t line up properly. Using div tags and the float attribute you can solve these issues.
+
+
+For this tutorial we are going to use a generic login to show the effects of the code. For the most basic log in, we need to have at least two input boxes, one for the user’s password, and the other for the user to identify themselves via a user name or id. The HTML code for this type of form is very easy, and very simple.
+
+<form action="login.php" method="post">
+Name: <input type="text" name="user"><br />
+Password: <input type="password" name="pass"><br />
+<input type="submit" value="Submit">>br />
+</form>
+
+When you display the code above you may see that text boxes for the user to put in their user name and password doesn’t align properly. To make the form look more professional, these boxes should align with each other. This is were the CSS become very useful. Before we get into the CSS, lets tweak the form by adding some div elements to it. First, we need to wrap the entire form in a div, then wrap the words describing the text fields, and one around the submit button. While doing this we will also give our div tags classes so that it is easier to create our CSS. Our HTML code will now look like this:
+
+<div class="login_form">
+<form action="login.php" method="post">
+<div class="login_input">Name:</div>
+<input type="text" name="user"><br />
+<div class="login_input">Password:</div>
+<input type="password" name="pass"><br />
+<div class="login_submit"><input type="submit" value="Submit"></div><br />
+</form>
+</div>
+
+As you see we give the div around Name and Password the same class, while the div that wraps the entire form a different class. This is because we want to apply the same style to the divs around Name and Password.
+
+Just like building a house we have to start with a foundation. The div element that is around the form is the foundation for the CSS. It is what will determine the width of the form, and the width of the form will effect the login_input class that we created. So with the login_form class, lets make it have a width of 350 pixels.
+
+<style>
+.login_form{
+ width: 275px;
+}
+</style>
+
+Now that we have the foundation, we can start building on top of that. First step we need to do with the login_input class is to create a width. We will give this class 36% width. This will give us 36% of the width of the parent’s (login_form) width, or 99 pixels wide. By setting the width, we know know that the start of the inputs will be 36% from the left of the parent div’s left side and are now aligned vertically. This is also where the first issue arises. With some browsers when you close a div tag, it automatically adds a line break. To solve this we are going to float the div tag to the left, now the div tag act more like a span tag. Depending on your taste, another issue may arise from doing this. Your text is now on the very left side of the login_form div, this can create a lot of white space between the description and the input box. To solve this issue by using text-align and setting the value to right align the login_input class. With all of this new information we can now create an entry in our style sheet for the login_input class.
+
+<style>
+.login_form{
+ width: 275px;
+}
+
+.login_input{
+ width: 36%;
+ float: left;
+ text-align: right;
+}
+</style>
+
+To give the form a little more of a professional look, we can now float the submit button to the right. This will allow it to align with the very right of our form. If you wanted you could even style the button for the form.
+
+<style>
+.login_form{
+ width: 275px;
+}
+
+.login_input{
+ width: 36%;
+ float: left;
+ text-align: right;
+}
+.login_input{
+ float: left;
+ text-align: right;
+}
+.login_submit{
+ float: right;
+}
+</style>
+
+At this point, the alignment for the login form looks very professional. You can enhance the look of the forum by adding background colors, and such to match the theme of your website. You can view an example of the code above here

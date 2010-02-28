@@ -19,7 +19,7 @@ h1.greet {
     font-size:4em;
     font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
 }
-.rojo { color:#E40000;}
+.rojo, .formOpcional { color:#E40000;}
 #main, .explica, .explica li {
    font-family:"Museo","Helvetica Neue",sans-serif;
 }

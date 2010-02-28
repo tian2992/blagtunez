@@ -63,7 +63,7 @@ public class testServlet extends HttpServlet {
 
             songi.setNombre("gluglumi");
              */
-            /* TODO output your page here
+            /* 
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet artServ</title>");  

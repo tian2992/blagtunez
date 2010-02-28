@@ -16,9 +16,9 @@ public class UserManager implements java.io.Serializable {
 
             Usuario ad = new Usuario();
             ad.setAdmin(true);
-            ad.setNombre("Administrador");
             ad.setUsername("admin");
             ad.setPass("admin");
+            ad.setNombre("Administrador");
             ad.setEMail("tian@localhost");
             lisUser.add(ad);
         }
@@ -27,8 +27,6 @@ public class UserManager implements java.io.Serializable {
     public UserManager(){
         setup();
     }
-
-    //TODO: crear usuarios
 
     static public boolean autenticar(String user, String pass){
         setup();
@@ -42,10 +40,6 @@ public class UserManager implements java.io.Serializable {
     static public boolean anadirUser(Usuario u){
         setup();
         return lisUser.add(u);
-        /*if (isValido(u))
-            
-        else
-            return false; */
     }
 
     static public boolean isValido(Usuario u){
