@@ -292,7 +292,7 @@ public class matriz implements java.io.Serializable {
             tempAr = tempFi.getDerecha();
             while (tempAr!=null){
                 contador++;
-                tempAr.getDerecha();
+                tempAr = tempAr.getDerecha();
             }
             tempFi = tempFi.getAbajo();
         }

@@ -6,7 +6,7 @@
  </div>
    <div class="span-9 last" id="sidebar">
     <div class="span-7 prepend-1 append-1 last">
-        <form  name = "creation" action = "crearUser.jsp" method = "POST" >
+        <form name="creation" action="crearUser.jsp" method="POST" >
             <div class="formCaptions">
                 <label class="formCapt">Nombre:</label><input class="text" type="text" name="nombre" value="" size="20" />
                 <label class="formCapt">UserName:</label><input class="text" type="text" name="username" value="" size="20" />
