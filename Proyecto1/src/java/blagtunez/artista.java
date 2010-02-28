@@ -1,5 +1,7 @@
 package blagtunez;
 
+import java.util.List;
+
 /**
  * Clase de Artistas
  */
@@ -11,7 +13,7 @@ public class artista implements java.io.Serializable {
     String imagen;
     String genero;
 
-     java.util.List<cancion> lisCan;
+    java.util.List<cancion> lisCan;
 
     public artista(){
         if (liston.FuncioListon)
@@ -76,6 +78,12 @@ public class artista implements java.io.Serializable {
         this.nombre = nombre;
     }
 
-    
+        public List<cancion> getLisCan() {
+        return lisCan;
+    }
+
+    public void setLisCan(List<cancion> lisCan) {
+        this.lisCan = lisCan;
+    }
 
 }

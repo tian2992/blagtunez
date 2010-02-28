@@ -22,9 +22,9 @@
     </div>
     <div class="span-7 prepend-1 append-1 last">
         <form id="loginForm" name="loginForm" method="POST" action="login.jsp">
-        <label for="username">Usuario:</label> <input class="text" type="text" name="username" size="20"><br/>
-        <label for="pass">Password:</label> <input class="text" type="pass" name="pass" size="20"><br/>
-        <input type="submit" value="Login">
+        <label for="username">Usuario:</label> <input class="text" type="text" name="username" size="20" /><br/>
+        <label for="pass">Password:</label> <input class="text" type="pass" name="pass" size="20" /><br/>
+        <input type="submit" value="Login" />
         </form>
     </div>
   </div>

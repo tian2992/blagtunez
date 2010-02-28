@@ -87,10 +87,10 @@ public class liston<E> implements java.util.List<E>  {
     }
 
     class Contenedor{
-    Contenedor sig; //Debieron Haber sido ZIG para gran justicia
-    Contenedor ant;
+        Contenedor sig; //Debieron Haber sido ZIG para gran justicia
+        Contenedor ant;
 
-    E payload;
+        E payload;
 
         public Contenedor(){}
 
@@ -134,6 +134,10 @@ public class liston<E> implements java.util.List<E>  {
             this.sig = sig;
         }
 
+    }
+
+    public liston(){
+        ini = fin = null;
     }
 
     static boolean FuncioListon = false; //TODO: cambiar esto cuando funcione
@@ -198,8 +202,36 @@ public class liston<E> implements java.util.List<E>  {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public boolean addAll(Collection<? extends E> c) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean addAll(Collection<? extends E> c) { //deberia funcionar...
+        if (c.getClass().equals(this.getClass())){
+           liston q = (liston)c;
+           getFin().setSig(q.getIni());
+           setFin(q.getFin());
+           return true;
+        }
+        else {
+            for (E ellie: c){
+                add(ellie);
+            }
+            return true;
+        }
+    }
+    
+    public boolean setIni(Contenedor c){
+        fin = c;
+        return true;
+    }
+    public boolean setFin(Contenedor c){
+        fin = c;
+        return true;
+    }
+
+    Contenedor getIni(){
+        return ini;
+    }
+
+    Contenedor getFin(){
+        return fin;
     }
 
     public boolean addAll(int index, Collection<? extends E> c) {
@@ -215,7 +247,8 @@ public class liston<E> implements java.util.List<E>  {
     }
 
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        setIni(null);
+        setFin(null);
     }
 
     public E get(int index) {
@@ -226,8 +259,8 @@ public class liston<E> implements java.util.List<E>  {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void add(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void add(int index, E element) { //TODO implementar esto correctamente
+        add(element);
     }
 
     public E remove(int index) {

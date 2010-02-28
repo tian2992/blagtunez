@@ -13,10 +13,19 @@ public class cancion implements java.io.Serializable {
 
     }
 
+    public String toString(){
+        return nombre + " - " + año;
+    }
+
+    public cancion(String nombre, artista interprete) {
+        setNombre(nombre);
+        setInterprete(interprete);
+    }
+
     public cancion(String nombre, int año, artista interprete) {
-        this.nombre = nombre;
-        this.año = año;
-        this.interprete = interprete;
+        setNombre(nombre);
+        setAño(año);
+        setInterprete(interprete);
     }
 
     public int getAño() {
