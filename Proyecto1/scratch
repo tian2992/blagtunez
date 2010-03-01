@@ -3,7 +3,7 @@ n most HTML forums, the user will have text to describe the input field, followe
 
 For this tutorial we are going to use a generic login to show the effects of the code. For the most basic log in, we need to have at least two input boxes, one for the user’s password, and the other for the user to identify themselves via a user name or id. The HTML code for this type of form is very easy, and very simple.
 
-<form action="login.php" method="post">
+<form charset="UTF-8" action="login.php" method="post">
 Name: <input type="text" name="user"><br />
 Password: <input type="password" name="pass"><br />
 <input type="submit" value="Submit">>br />
@@ -12,7 +12,7 @@ Password: <input type="password" name="pass"><br />
 When you display the code above you may see that text boxes for the user to put in their user name and password doesn’t align properly. To make the form look more professional, these boxes should align with each other. This is were the CSS become very useful. Before we get into the CSS, lets tweak the form by adding some div elements to it. First, we need to wrap the entire form in a div, then wrap the words describing the text fields, and one around the submit button. While doing this we will also give our div tags classes so that it is easier to create our CSS. Our HTML code will now look like this:
 
 <div class="login_form">
-<form action="login.php" method="post">
+<form charset="UTF-8" action="login.php" method="post">
 <div class="login_input">Name:</div>
 <input type="text" name="user"><br />
 <div class="login_input">Password:</div>

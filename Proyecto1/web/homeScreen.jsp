@@ -1,8 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="standardHeader.xhtml" %>
 <jsp:useBean id="usuario" class="blagtunez.Usuario" scope="session"/>
 <jsp:useBean id="matri" class="blagtunez.MatrixManager" scope="application" />
 
+  <%@ include file="auth.jspf" %>
   <div class="span-15" id="main">
       <h1 class="greet">Bienvenido a <span class="rojo">Blag.fm</span></h1>
       <p><% out.print(matri.estadoDeMatriz()); %></p>
@@ -18,7 +19,7 @@
         <% if (!matri.esVacia()) {%>
         <div id="busCartista" class="buscador">
             <h2>Buscar Artistas</h2>
-            <form name="buscaArt" action="buscaArtista.jsp" method="POST">
+            <form charset="UTF-8" name="buscaArt" action="buscaArtista.jsp" method="POST">
                 <label>Nombre del Artista: </label><input class="text" type="text" name="nombre" id="nombre" size="20" /><br />
                 <label>Genero</label>
                 <select name="genero" id="genero">
@@ -34,7 +35,7 @@
                             }
                     %>
                 </select>
-                <button type="submit" value="Buscar!" />
+                <input type="submit" value="Buscar!" />
             </form>
         </div>
         <% } %>

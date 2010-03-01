@@ -19,6 +19,8 @@ public class MatrixManager implements java.io.Serializable {
 
     public boolean agregarArtista(artista arti){
         setup();
+        arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
+        arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
         nodoEl let = new nodoEl(arti.getNombre().trim().charAt(0),arti.getGenero());
 
         try{
@@ -32,6 +34,8 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public boolean borrarArtista(artista arti){ //TODO: Hacer algo con el nodo que nos retorna la matrix
+        arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
+        arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
         nodo nodel= matrix.borrarNodo(arti.getNombre().charAt(0), arti.getGenero());
         if (nodel==null){
             return false;
@@ -43,11 +47,18 @@ public class MatrixManager implements java.io.Serializable {
         return matrix.getGeneros();
     }
 
+    public java.util.List<artista> listarArtistas(){
+        return matrix.getArtistas();
+    }
+
     public artista buscarArtista(artista arti){
         if (arti==null)
             return null;
         if (arti.getNombre()==null || arti.getGenero()==null)
             return null;
+
+        arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
+        arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
 
         nodoEl nodista = matrix.buscarNodo(arti.getNombre().charAt(0),arti.getGenero());
 

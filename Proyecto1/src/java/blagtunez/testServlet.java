@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class testServlet extends HttpServlet {
 
-    static matriz matrix;
-    public static String blagg = "";
 
     public void init(){
 
@@ -52,8 +50,10 @@ public class testServlet extends HttpServlet {
             out.println(matriz.estadoDeMatriz());
              *
              * */
-            out.println(UserManager.lisUser);
-            for (Usuario us: UserManager.lisUser){
+            
+            out.println(MatrixManager.matrix);
+            liston<artista> listi = (liston)MatrixManager.matrix.getArtistas();
+            for (artista us: listi){
                 out.println(us);
             }
 

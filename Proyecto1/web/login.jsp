@@ -1,8 +1,16 @@
+<jsp:useBean id="usu" class="blagtunez.Usuario" scope="page"/>
 <jsp:useBean id="usuario" class="blagtunez.Usuario" scope="session"/>
-<jsp:setProperty name="usuario" property="*"/>
+<jsp:setProperty name="usu" property="*"/>
 <%
-boolean user = blagtunez.UserManager.autenticar(usuario.getUsername(), usuario.getPass());
-if (user){ %>
+blagtunez.Usuario usi = blagtunez.UserManager.autenticar(usu.getUsername(), usu.getPass());
+if (usi!=null){
+    usuario.setNombre(usi.getNombre());
+    usuario.setEMail(usi.getEMail());
+    usuario.setPass(usi.getPass());
+    usuario.setAdmin(usi.isAdmin());
+    usuario.setUsername(usi.getUsername());
+    %>
+    
 <jsp:forward page="homeScreen.jsp" />
 <% } else { %>
 <jsp:forward page="index.jsp" />

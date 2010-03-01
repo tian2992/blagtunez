@@ -28,14 +28,14 @@ public class UserManager implements java.io.Serializable {
         setup();
     }
 
-    static public boolean autenticar(String user, String pass){
+    static public Usuario autenticar(String user, String pass){
         setup();
         for (Usuario us: lisUser){
             if ((us.getUsername().equalsIgnoreCase(user))&&(us.getPass().equals(pass))){
-                return true;
+                return us;
             }
         }
-        return false;
+        return null;
     }
     static public boolean anadirUser(Usuario u){
         setup();
