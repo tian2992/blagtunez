@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="standardHeader.xhtml" %>
 <jsp:useBean id="usuario" class="blagtunez.Usuario" scope="session"/>
 <jsp:useBean id="matri" class="blagtunez.MatrixManager" scope="application" />
@@ -11,7 +11,7 @@
          artuditu = matri.buscarArtista(arti);
          out.println("<div class='searchResults'>");
          if (artuditu != null){
-
+            out.println("Listado para: "+artuditu.getNombre());
             java.util.List<blagtunez.cancion> lisCan = artuditu.getLisCan();
             if (!lisCan.isEmpty()){
                 out.println("<ul class='liscan'>");

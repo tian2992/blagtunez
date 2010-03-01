@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="standardHeader.xhtml" %>
 <jsp:useBean id="usuario" class="blagtunez.Usuario" scope="session"/>
 <jsp:useBean id="matri" class="blagtunez.MatrixManager" scope="application" />
@@ -13,19 +13,28 @@
             <div class="error">Hubo un error al ingresar tu data</div>
             <% }
             else if (request.getParameter("error").equalsIgnoreCase("noAuto")){ %>
-            <div class="error">No tienes autorizacion de ingresar artistas</div>
+            <div class="error">No tienes autorizacion de borrar artistas</div>
             <% }
           } %>
       </div>
       <div>
-          <form charset="UTF-8"  id="agregaArtista" action="artistaCreacion.jsp" method="POST">
+          <form charset="UTF-8" id="borraArtista" action="artistaBorrar.jsp" method="POST">
               <fieldset>
-              <label class="formCap">Nombre: </label><input type="text" class="text" name="nombre" id="nombre" value="" size="20" /><br/>
-              <label class="formCap">Nacionalidad: </label><input type="text" class="text" name="nacionalidad" id="nacionalidad" value="" size="20" /><br />
-              <label class="formCap">Genero: </label><input type="text" class="text" name="genero" id="genero" value="" size="20" /><br />
-              <label class="formcap formOpcional">Imagen: </label><input type="text" class="text" name="imagen" id="imagen" value="" size="20" /><br />
-              <input type="submit" value="Agregar Artista" /><br />
-              <label>Los campos en <span class="formOpcional">rojo, son opcionales</span></label>
+                <label>Selecciona el artista a Borrar</label>
+                <select name="artista" id="artista">
+                    <%
+                        java.util.List<blagtunez.artista> artis = matri.listarArtistas();
+                        if (artis!=null){
+                            for (blagtunez.artista arti : artis){
+                               out.println("<option value=\""+arti.getNombre()+"\">"+arti.getNombre()+"</option>");
+                            }
+                        }
+                        else{
+                                out.println("<option disabled='true'>No Hay Artistas a Borrar</option>");
+                            }
+                    %>
+                </select>
+                <input type="submit" value="Borrar!" />
               </fieldset>
           </form>
       </div>

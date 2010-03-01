@@ -11,21 +11,18 @@ public class nodoEl extends nodo implements java.io.Serializable{
 
     private java.util.List<artista> payload;
 
-    nodoEl(){
-        if (liston.FuncioListon)
-            payload = new liston<artista>();
-        else
-            payload = new java.util.ArrayList<artista>();
+    public nodoEl(){
+        payload = new liston<artista>();
     }
 
     nodoEl(char l, String ge){
-        super();
+        payload = new liston<artista>();
         setLetrina(l);
         setGenero(ge);
     }
 
     nodoEl(nodoFila l, nodoHead g){
-        super();
+        payload = new liston<artista>();
         let = l;
         gen = g;
     }

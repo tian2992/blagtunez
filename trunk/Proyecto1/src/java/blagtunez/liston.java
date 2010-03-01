@@ -19,7 +19,7 @@ public class liston<E> implements java.util.List<E>  {
         ini = fin = null;
     }
 
-    static boolean FuncioListon = true; //TODO: A ver que pasa!
+    static boolean FuncioListon = true;
 
     private Contenedor ini, fin;
 
@@ -166,6 +166,11 @@ public class liston<E> implements java.util.List<E>  {
      * @return
      */
     public boolean addAll(Collection<? extends E> c) { //deberia funcionar...
+        if (c == null)
+            return true;
+        if (c.isEmpty())
+            return true;
+        
         if (c.getClass().equals(this.getClass())){
            liston q = (liston)c;
            if (ini==null){ //si la a la que queremos añadir es nula

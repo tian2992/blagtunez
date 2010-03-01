@@ -1,0 +1,3 @@
+<% if (usuario.getUsername()==null){ %>
+        <jsp:forward page="noPermitido.jsp"><jsp:param name="error" value="noAuto" /></jsp:forward>
+<% } %>
