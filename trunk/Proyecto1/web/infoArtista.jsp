@@ -1,7 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="standardHeader.xhtml" %>
-<jsp:useBean id="usuario" class="blagtunez.Usuario" scope="session"/>
-<jsp:useBean id="matri" class="blagtunez.MatrixManager" scope="application" />
+<%@ include file="standardHeader.jsp" %>
 
   <div class="span-15" id="main">
       <h1>Reporte de Artistas por Genero</h1>
@@ -19,8 +16,8 @@
                 //String arti = request.getParameter("art");
 
                 out.println("Reporte de el artista "+arti);
-                java.util.List<blagtunez.cancion> canList
-                blagtunez.artista artuditu = buscarArtista(arti, geni);
+                java.util.List<blagtunez.cancion> canList;
+                blagtunez.artista artuditu = matri.buscarArtista(new blagtunez.artista(arti, geni));
             //java.util.List<blagtunez.cancion> canList = matri.getCancionesArtista(arti, geni);
                 canList = artuditu.getLisCan();
             if (canList!=null){
@@ -30,13 +27,13 @@
                     for (blagtunez.cancion can : canList){
                         out.println("<li><div class='artDisplay'>");
                         out.println("<h2 class='artiNom'>"+can.getNombre()+"</h2>");
-                        out.println("<h3>"+can.getAÃ±o()+"</h3>");
+                        out.println("<h3>"+can.getAño()+"</h3>");
                         out.println("</div></li>");
                     }
                   out.println("</ul>");
 
                   } else { //o sea si esta vacia
-                        out.println("<div class='notice'>No hay canciones, debes aÃ±adir canciones</a>");
+                        out.println("<div class='notice'>No hay canciones, debes añadir canciones</a>");
                   }
             }}%>
       </div>

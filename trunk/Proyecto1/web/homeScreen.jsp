@@ -1,7 +1,5 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="standardHeader.xhtml" %>
-<jsp:useBean id="usuario" class="blagtunez.Usuario" scope="session"/>
-<jsp:useBean id="matri" class="blagtunez.MatrixManager" scope="application" />
+<%@ include file="standardHeader.jsp" %>
+
 
   <%@ include file="auth.jspf" %>
   <div class="span-15" id="main">
@@ -13,8 +11,7 @@
   <div class="span-9 last" id="sidebar">
     <div class="span-7 prepend-1 append-1 last">
         <p class="saludo">
-        Hola: <jsp:getProperty name="usuario" property="username" />
-        Hola <% out.print(usuario.getNombre()); %>
+            <!-- aqui va la parte de arriba de la sidebar -->
         </p>
         <% if (!matri.esVacia()) {%>
         <div id="busCartista" class="buscador">

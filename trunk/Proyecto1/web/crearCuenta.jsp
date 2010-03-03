@@ -1,5 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ include file="standardHeader.xhtml" %>
+<%@ include file="standardHeader.jsp" %>
   <div class="span-15" id="main">
     <div>
         <form charset="UTF-8" name="creation" action="crearUser.jsp" method="POST" >
@@ -16,11 +15,11 @@
   </div>
    <div class="span-9 last" id="sidebar">
     <div class="span-7 prepend-1 append-1 last">
-        <h2>Â¿Porque necesitamos esta info de ti?</h2>
+        <h2>¿Porque necesitamos esta info de ti?</h2>
         <ul>
             <li>Necesitamos asecharte</li>
-            <li>AdemÃ¡s necesitamos tu mail para poder enviarte mucho SPAM</li>
-            <li>AdemÃ¡s te mantendremos informado de todo lo que necesites</li>
+            <li>Además necesitamos tu mail para poder enviarte mucho SPAM</li>
+            <li>Además te mantendremos informado de todo lo que necesites</li>
         </ul>
     </div>
   </div>

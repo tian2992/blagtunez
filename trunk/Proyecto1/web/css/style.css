@@ -3,23 +3,32 @@
     Created on : 24-Feb-2010, 08:08:49
     Author     : tian
     Description: Estilo de Blag.fm
+
+#FFFFE1 Fondo Claro
+#324031 Texto Oscuro
+#2A3F42 Titulos semiOscuros
+#B7C22C Acentos Verdaceos
+#22A8B5 Acentos Azules
+#B53D22 Acentos Corinto
+
 */
 /* ================ Estilos Basicos de Texto ================*/
 body {
-    background-color:#FFF;
-    background-image:url("bg.png");
-    background-repeat:repeat-x;
-    background-position:top center;
+    background-color:#FFFFE1;
 }
-body, p, h1, h2, h3, h4, li {
+body, p, h1, h2, h3, h4, li, a {
     font-family: "Gill Sans MT Pro Medium", "Gill Sans MT Pro" ,"Helvetica Neue",Helvetica,sans-serif;
-    color: #24000f;
+    color: #324031;
+}
+a{
+    text-decoration:underline;
 }
 h1.greet {
     font-size:4em;
     font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
 }
-.rojo, .formOpcional { color:#E40000;}
+fieldset{}
+.rojo, .formOpcional { color:#22A8B5;}
 #main, .explica, .explica li {
    font-family:"Museo","Helvetica Neue",sans-serif;
 }
@@ -27,14 +36,19 @@ h1.greet {
     font-size:medium;
     padding:2em 0;
 }
+.notice img, .error img, .success img{
+    float:right;
+}
 .creaCuenta{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
     text-align:center;
     float:left;
     width:auto;
     font-size:2em;
     padding:2em;
-    background-color:#705B35;
-    border: #C7B07B 3px solid;
+    background-color:#22A8B5;
+    border: #324031 3px solid;
 }
 .creaCuenta a:link, .creaCuenta a:visited, .creaCuenta a:active{
     font-family: "Museo","Helvetica Neue",sans-serif;
@@ -60,26 +74,84 @@ ul.nav li{
     padding:0 0.5em;
     float:left;
 }
-.noList{
+.noList{ /* listado de Artistas*/
     list-style-type:none;
+    border:#2A3F42 2px solid;
+    background-color:#22A8B5;
+        -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 .artDisplay{
-    min-height:200px;
-    border:#c7b07b 2px solid;
-    background-color:#e8d9ac;
-    padding:1em;
+    display:block;
+    border-bottom:#2A3F42 2px solid;
+    padding-top:1.5em;
+    padding-bottom:1.5em;
+    
 }
+.artDisplay:last-child{
+    border-bottom:none;
+}
+/* .artDisplay{
+    border-bottom:none;
+} */
 .artDisplay img{
     padding-right:1em;
-    float:left;
-    clear:left;
-    width:120px;
+    /*float:left;
+    clear:both;*/
+    width:200px;
+}
+.artDisplay .articon {
+    font-size:medium;
+    padding-right:1.5em;
+    float:right;
+    text-align:right;
+}
+.artDisplay .articon h2{
+    font-size:x-large;
+}
+.artDisplay .articon h3{
+    font-size:large;
+}
+.lisCan {
+}
+.canDisplay{
+
+}
+.canDisplay img{
+    clear:none;
+    float:right;
 }
 /* ============ Seccion de Estructura de la pagina ================ */
 #main {
+    /*
+    background-color:#fff6d9;
+    border: #e8d9ac 1px solid; */
     margin-top:4em;
 }
 #sidebar {
     margin-top:4em;
     font-size:larger;
+}
+input.text{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+/* input[type=text]{
+    -webkit-border-radius: 10px;
+}
+*/
+.userManager{
+    -moz-border-radius-left-bottom: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    text-align:center;
+    background-color:#324031;
+    color:#b7c22c;
+    height:1.4em;
+    padding:0 1em;
+    position:absolute;
+    top:0;
+    right:100px;
+    display:block;
+    font-weight: bold;
 }
