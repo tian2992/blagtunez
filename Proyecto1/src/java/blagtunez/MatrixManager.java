@@ -18,9 +18,16 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public boolean agregarArtista(artista arti){
+        return agregarArtista(arti, false);
+    }
+
+    public boolean agregarArtista(artista arti, boolean sano){
         setup();
-        arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
-        arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
+
+        if (!sano){
+            arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
+            arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
+        }
         nodoEl let = new nodoEl(arti.getNombre().trim().charAt(0),arti.getGenero());
 
         try{
@@ -79,17 +86,17 @@ public class MatrixManager implements java.io.Serializable {
         else
             artuditu = buscarArtista(songi.getInterprete());
         
-        boolean artexis = false;
+        /* boolean artexis = false;
         if (artuditu == null)
             artexis = agregarArtista(artuditu);
         
-        if (artexis){
+        if (!artexis){
             if (sano)
                 artuditu = buscarArtista(songi.getInterprete(), true);
             else
                 artuditu = buscarArtista(songi.getInterprete());
         }
-        
+        */
         if (artuditu==null) //lo intente...
             return false;
         
