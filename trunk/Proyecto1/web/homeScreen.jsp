@@ -38,6 +38,26 @@
                 <input type="submit" value="Buscar!" />
             </form>
         </div>
+        <div>
+            <h2>Listado de Artistas por Genero</h2>
+                <form charset="UTF-8" name="buscaArt" action="reporteGenero.jsp" method="POST">
+                <label>Genero</label>
+                <select name="gen" id="gen">
+                    <%
+                        java.util.List<String> genois = matri.listarGeneros();
+                        if (genois!=null){
+                            for (String geni : genois){
+                               out.println("<option value=\""+geni+"\">"+geni+"</option>");
+                            }
+                        }
+                        else{
+                                out.println("<option disabled='true'>No Hay Generos</option>");
+                            }
+                    %>
+                </select>
+                <input type="submit" value="Buscar!" />
+            </form>
+        </div>
         <% } %>
     </div>
   </div>

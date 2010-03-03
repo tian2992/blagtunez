@@ -48,17 +48,107 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public java.util.List<artista> listarArtistas(){
+        setup();
         return matrix.getArtistas();
     }
 
-    public artista buscarArtista(artista arti){
+    public java.util.List<artista> listarArtistas(String gen){
+        setup();
+        return matrix.getArtistasPorGenero(gen);
+    }
+
+
+     /**
+     * agrega cancion a lo Ranger, a.k.a no sano
+     * @param songi
+     * @return el true si funcio, false si no
+     */
+    public boolean agregarCancion(cancion songi){
+        return agregarCancion(songi, false);
+    }
+    
+    public boolean agregarCancion(cancion songi, boolean sano){
+        if (songi==null)
+            return false;
+        if (songi.getNombre()==null || songi.getInterprete()==null)
+            return false;
+        
+        artista artuditu;
+        if (sano)
+            artuditu = buscarArtista(songi.getInterprete(), true);
+        else
+            artuditu = buscarArtista(songi.getInterprete());
+        
+        boolean artexis = false;
+        if (artuditu == null)
+            artexis = agregarArtista(artuditu);
+        
+        if (artexis){
+            if (sano)
+                artuditu = buscarArtista(songi.getInterprete(), true);
+            else
+                artuditu = buscarArtista(songi.getInterprete());
+        }
+        
+        if (artuditu==null) //lo intente...
+            return false;
+        
+        if (!sano){
+            songi.setNombre(stringFixer.toUTF8(songi.getNombre()));
+            songi.getInterprete().setGenero(stringFixer.toUTF8(songi.getInterprete().getGenero()));
+            songi.getInterprete().setNombre(stringFixer.toUTF8(songi.getInterprete().getNombre()));
+        }
+        
+        return artuditu.getLisCan().add(songi); //lo metemos ya sanitizado
+        
+        
+        
+        //return true;
+    }
+
+    /**
+     * retorna las canciones del artista, ya sanitizada
+     * @param arti
+     * @return el artista o null si no ta
+     */
+    public java.util.List<cancion> getCancionesArtista(String art, String gen){
+        //envio las strings ya sanitizadas, :D UTF8 FTW
+
+        artista artuditu = buscarArtista(new artista(art,gen), true);
+        if (artuditu==null)
+            return null;
+
+        //java.util.List<cancion> listolon = new liston<cancion>();
+
+        return artuditu.getLisCan();
+
+        //return null;
+    }
+    /**
+     * busca los artistas a lo Ranger, a.k.a no sano
+     * @param arti
+     * @return el artista o null si no ta
+     */
+    public artista buscarArtista(artista arti){ // si lo envio a lo ranger, no estan sanitizadas
+        return buscarArtista(arti, false);
+    }
+
+     /**
+     * busca los artistas civilizadamente, sano decide si ya estan en UTF-8
+      * @param arti el artista a buscar
+      * @param sano true si estan sanitizadas
+      * @return el artista, o null si no ta
+     */
+    public artista buscarArtista(artista arti, Boolean sano){
         if (arti==null)
             return null;
         if (arti.getNombre()==null || arti.getGenero()==null)
             return null;
 
-        arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
-        arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
+        if (!sano){ //sano decide si estan sanas o no
+            arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
+            arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
+        }
 
         nodoEl nodista = matrix.buscarNodo(arti.getNombre().charAt(0),arti.getGenero());
 

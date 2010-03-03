@@ -12,7 +12,7 @@ body {
     background-position:top center;
 }
 body, p, h1, h2, h3, h4, li {
-    font-family: "Gill Sans MT Pro Medium","Helvetica Neue",Helvetica,sans-serif;
+    font-family: "Gill Sans MT Pro Medium", "Gill Sans MT Pro" ,"Helvetica Neue",Helvetica,sans-serif;
     color: #24000f;
 }
 h1.greet {
@@ -43,6 +43,37 @@ h1.greet {
 }
 .explica {
     font-size:1.5em;
+}
+#footer{
+    
+    margin:0;
+    text-align:right;
+}
+.nav{
+    text-align:right;
+    width:500px;
+    margin-right:1px;
+    margin-left:auto;
+}
+ul.nav li{
+    list-style-type:none;
+    padding:0 0.5em;
+    float:left;
+}
+.noList{
+    list-style-type:none;
+}
+.artDisplay{
+    min-height:200px;
+    border:#c7b07b 2px solid;
+    background-color:#e8d9ac;
+    padding:1em;
+}
+.artDisplay img{
+    padding-right:1em;
+    float:left;
+    clear:left;
+    width:120px;
 }
 /* ============ Seccion de Estructura de la pagina ================ */
 #main {

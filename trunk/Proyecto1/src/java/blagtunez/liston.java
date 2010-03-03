@@ -30,8 +30,8 @@ public class liston<E> implements java.util.List<E>  {
      */
     public boolean add(E e) {
         if (ini==null){
-            ini=new Contenedor(e);
-            fin=ini;
+            ini = new Contenedor(e);
+            fin = ini;
             return true;
         }
         else { //solo lo añade al final...
@@ -173,7 +173,7 @@ public class liston<E> implements java.util.List<E>  {
         
         if (c.getClass().equals(this.getClass())){
            liston q = (liston)c;
-           if (ini==null){ //si la a la que queremos añadir es nula
+           if (this.isEmpty()){ //si la a la que queremos añadir es nula
                setIni(q.getIni());
                setFin(q.getFin());
                return true;
@@ -196,7 +196,7 @@ public class liston<E> implements java.util.List<E>  {
      * @return
      */
     boolean setIni(Contenedor c){
-        fin = c;
+        ini = c; //Estupido Typo
         return true;
     }
     /**
@@ -361,6 +361,9 @@ public class liston<E> implements java.util.List<E>  {
 
 
         public boolean hasNext() {
+            if (ini==null || fin == null)
+                return false;
+
             if (tempi==null){
                 return true;
             }
@@ -396,6 +399,8 @@ public class liston<E> implements java.util.List<E>  {
         }
 
         public boolean hasPrevious() {
+            if (ini==null || fin == null)
+                return false;
             if (tempi==null){
                 return true;
             }
@@ -444,6 +449,10 @@ public class liston<E> implements java.util.List<E>  {
 
         public Contenedor(E pay){
             payload = pay;
+        }
+
+        public String toString(){
+            return payload.toString();
         }
 
         public boolean isAnt(){
