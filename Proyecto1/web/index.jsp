@@ -1,14 +1,13 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ include file="standardHeader.xhtml" %>
+<%@ include file="standardHeader.jsp" %>
 
   <div class="span-15" id="main">
       <h1 class="greet">Bienvenido a <span class="rojo">Blag.fm</span></h1>
       <p class="explica">
-          Blagtunez es una Aplicacion web diseÃ±ada para organizar tu mÃºsica.
+          Blagtunez es una Aplicacion web diseñada para organizar tu música.
       </p>
       <ul class="explica">
-          <li>Permite aÃ±adir y borrar Artistas</li>
-          <li>Tiene AutenticaciÃ³n</li>
+          <li>Permite añadir y borrar Artistas</li>
+          <li>Tiene Autenticación</li>
           <li>Puede recibir XML de entrada</li>
           <li>y mucho mas</li>
       </ul>
@@ -18,7 +17,7 @@
   </div>
   <div class="span-9 last" id="sidebar">
     <div class="span-7 prepend-1 append-1 last">
-        <h2><span class="small">Si ya tienes cuenta</span> <br />Inicia SesiÃ³n</h2>
+        <h2><span class="small">Si ya tienes cuenta</span> <br />Inicia Sesión</h2>
     </div>
     <div class="span-7 prepend-1 append-1 last">
         <form charset="UTF-8" id="loginForm" name="loginForm" method="POST" action="login.jsp">

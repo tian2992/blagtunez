@@ -1,7 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="standardHeader.xhtml" %>
-<jsp:useBean id="usuario" class="blagtunez.Usuario" scope="session"/>
-<jsp:useBean id="matri" class="blagtunez.MatrixManager" scope="application" />
+<%@ include file="standardHeader.jsp" %>
 <jsp:useBean id="arti" class="blagtunez.artista" scope="page" />
 <jsp:setProperty name="arti" property="*"/>
 
@@ -11,12 +8,16 @@
          artuditu = matri.buscarArtista(arti);
          out.println("<div class='searchResults'>");
          if (artuditu != null){
-            out.println("Listado para: "+artuditu.getNombre());
+            out.println("<p class='explica'>Listado para: <span class='rojo'>"+artuditu.getNombre()+"</span></p>");
             java.util.List<blagtunez.cancion> lisCan = artuditu.getLisCan();
             if (!lisCan.isEmpty()){
-                out.println("<ul class='liscan'>");
+                out.println("<ul class='lisCan'>");
                     for (blagtunez.cancion songi : lisCan){
-                        out.println("<li>"+songi.toString()+"</li>");
+                        out.println("<li>" +
+                                "<div class='canDisplay'><h2>"+songi.toString()+"<a href='borrarCancion.jsp?artista="+artuditu.getNombre()+"&genero="+artuditu.getGenero()+"&cancion="+songi.getNombre()+"'><img src='PICS/user-trash.png' alt='borrar' /></a></h2>" +
+                                ""+
+                                "</div>" +
+                                "</li>");
                     }
                 out.println("</ul>");
             }
@@ -26,7 +27,7 @@
 
          }
          else{
-             out.println("<div class='notice'>Tu busqueda fue fallida, intenta <a href='homeScreen.jsp'>buscar de nuevo</a></div> ");
+             out.println("<div class='notice'><img src='PICS/emblem-important.png' alt='importante' />Tu busqueda fue fallida, intenta <a href='homeScreen.jsp'>buscar de nuevo</a></div> ");
              }
          out.println("</div>");
 
