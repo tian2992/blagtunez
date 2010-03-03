@@ -21,7 +21,7 @@
                 out.println("</ul>");
             }
             else {
-                out.println("<div class='notice'>Este artista no tiene Canciones</div>");
+                out.println("<div class='success'>Este artista no tiene Canciones</div>");
             }
 
          }

@@ -1,7 +1,7 @@
 <jsp:useBean id="addUss" class="blagtunez.Usuario" scope="page"/>
 <jsp:setProperty name="addUss" property="*"/>
 
-<%  blagtunez.testServlet.blagg = blagtunez.testServlet.blagg+addUss;
+<%  // blagtunez.testServlet.blagg = blagtunez.testServlet.blagg+addUss;
     if (addUss!=null){
         if (blagtunez.UserManager.anadirUser(addUss)) { //si se pudo añadir usuario %>
             <jsp:forward page="login.jsp" />

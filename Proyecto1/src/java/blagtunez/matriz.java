@@ -386,11 +386,12 @@ public class matriz implements java.io.Serializable {
         lis = new liston<artista>();
         nodoFila anclaIz = inicioFila;
         try {
-        nodoEl nodoAañadir = (nodoEl)inicioFila.getDerecha();
+        nodoEl nodoRecorrer;
             while (anclaIz!=null){ //ciclo grande
-                while(nodoAañadir!=null){
-                    lis.addAll(nodoAañadir.getPayload());
-                    nodoAañadir = (nodoEl)nodoAañadir.getDerecha();
+                nodoRecorrer = (nodoEl)anclaIz.getDerecha();
+                while(nodoRecorrer!=null){
+                    lis.addAll(nodoRecorrer.getPayload());
+                    nodoRecorrer = (nodoEl)nodoRecorrer.getDerecha();
                 }
                 anclaIz = anclaIz.getAbajo();
             }
@@ -399,17 +400,32 @@ public class matriz implements java.io.Serializable {
             return null;
         }
 
-        return null;
+        return lis;
+    }
+
+    public java.util.List<artista> getArtistasPorGenero(String s){
+        java.util.List<artista> lis;
+        lis = new liston<artista>();
+        nodoCol tiraEcol = buscarColumna(s);
+        if (tiraEcol==null)
+            return null;
+        nodoEl nodoRecorre;
+        try {
+            nodoRecorre = (nodoEl)tiraEcol.getAbajo();
+            while(nodoRecorre!=null){
+                lis.addAll(nodoRecorre.getPayload());
+                nodoRecorre = (nodoEl)nodoRecorre.getAbajo();
+            }
+            return lis;
+        }
+        catch (Exception e){
+            return null;
+        }
     }
 
     public java.util.List<artista> getArtistasPorLetra(char l){ //Hay que arreglar esto
         java.util.List<artista> lis;
-        if (liston.FuncioListon){
             lis = new liston<artista>();
-        }
-        else {
-            lis = new java.util.ArrayList<artista>();
-        }
         nodoFila filoso = buscarFila(l);
         nodoEl temp=(nodoEl)filoso.getDerecha();
         try {
