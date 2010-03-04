@@ -13,6 +13,8 @@ public class artista implements java.io.Serializable {
     String imagen;
     String genero;
 
+    static String imagenPrefix = "";
+
     java.util.List<cancion> lisCan;
 
     public artista(){
@@ -59,7 +61,7 @@ public class artista implements java.io.Serializable {
     }
 
     public String getImagen() {
-        return imagen;
+        return imagenPrefix+imagen;
     }
 
     public void setImagen(String imagen) {
@@ -99,4 +101,11 @@ public class artista implements java.io.Serializable {
         this.lisCan = lisCan;
     }
 
+    public static String getImagenPrefix() {
+        return imagenPrefix;
+    }
+
+    public static void setImagenPrefix(String imagenPrefix) {
+        artista.imagenPrefix = imagenPrefix;
+    }
 }

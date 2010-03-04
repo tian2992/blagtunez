@@ -15,5 +15,5 @@
 
 </head>
 <body>
-<div class="userManager">Hola <% if(usuario!=null){ if (usuario.getNombre()!=null){ out.print(usuario.getNombre()); out.println("<br /><a href='logOut.jsp' >Cierra tu sesión</a>"); }else{out.println(" Extraño");} }else{out.println(" Extraño");}%></div>
+<div class="userManager">Hola <% if(usuario!=null){ if (usuario.getNombre()!=null){ out.print(usuario.getNombre()); out.println("<br /><a href='logOut.jsp' >Cierra tu sesión</a>"); if(usuario.isAdmin()){out.println("<br /><a class='adCons' href='adminConsole.jsp'>Consola Administrativa</a>");} }else{out.println(" Extraño");} }else{out.println(" Extraño");}%></div>
 <div class="container">
