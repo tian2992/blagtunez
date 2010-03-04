@@ -16,7 +16,7 @@
     boolean funcio = matri.borrarCancion(art, gen, can);
 
     if (funcio){ %>
-        <jsp:forward page="homeScreen.jsp"></jsp:forward>
+        <jsp:forward page="buscaArtista.jsp"><jsp:param name="nombre" value="<%= art %>" /><jsp:param name="genero" value="<%= gen %>" /></jsp:forward>
     <% }
 
 

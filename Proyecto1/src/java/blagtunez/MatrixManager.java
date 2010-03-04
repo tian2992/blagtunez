@@ -73,13 +73,44 @@ public class MatrixManager implements java.io.Serializable {
     public boolean agregarCancion(cancion songi){
         return agregarCancion(songi, false);
     }
-    
+
+    public boolean agregarCancion(String nomSon, String anio, String art, String gen){
+        return agregarCancion(nomSon,anio,art,gen,false);
+    }
+
+    public boolean agregarCancion(String nomSon, String anio, String art, String gen, boolean sano){
+        try {
+        int año = Integer.parseInt(anio);
+        if (!sano){
+            nomSon = stringFixer.toUTF8(nomSon);
+            art  = stringFixer.toUTF8(art);
+            gen = stringFixer.toUTF8(gen);
+        }
+
+        artista arti = buscarArtista(new artista(art,gen),true);
+
+        if (arti == null)
+            return false;
+        
+        cancion songi = new cancion(nomSon,año,arti);
+
+        if (songi==null)
+            return false;
+
+        return agregarCancion(songi,arti,true);
+
+        //return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
     public boolean agregarCancion(cancion songi, boolean sano){
         if (songi==null)
             return false;
         if (songi.getNombre()==null || songi.getInterprete()==null)
             return false;
-        
+
         artista artuditu;
         if (sano)
             artuditu = buscarArtista(songi.getInterprete(), true);
@@ -111,6 +142,14 @@ public class MatrixManager implements java.io.Serializable {
         
         
         //return true;
+    }
+
+    public boolean agregarCancion(cancion songi, artista arti, boolean sano){ //solo si ya estan ambos
+        if (!sano)
+            songi.setNombre(songi.getNombre());
+        songi.setInterprete(arti);
+        arti.getLisCan().add(songi);
+        return true;
     }
 
     /**
@@ -183,7 +222,11 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public boolean borrarCancion(String artiString, String genString, String rola, boolean sano){
-        artista artuditu = this.buscarArtista(new artista(artiString,genString),sano); //Si sano es verdad, si si no no
+        if (!sano){
+            rola = stringFixer.toUTF8(rola);
+        }
+
+        artista artuditu = this.buscarArtista(new artista(artiString,genString),false); //Si sano es verdad, si si no no
         if (artuditu==null)
             return false;
         

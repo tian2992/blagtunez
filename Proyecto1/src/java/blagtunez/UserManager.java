@@ -51,4 +51,8 @@ public class UserManager implements java.io.Serializable {
         }
     }
 
+    public java.util.List<Usuario> getUserList(){
+        return lisUser;
+    }
+
 }

@@ -1,5 +1,5 @@
 package blagtunez;
-
+import java.net.URLEncoder;
 /**
  * Arreglando las idioteces de Tomcat
  * @author tian
@@ -22,5 +22,13 @@ public class stringFixer {
             utf8String = isoString;
         }
         return utf8String;
+    }
+    public static String urlEncode(String s){
+        try {
+            return URLEncoder.encode(s,"UTF-8");
+        }
+        catch (Exception e){
+            return s;
+        }
     }
 }

@@ -25,7 +25,7 @@
                   out.println("</ul>");
 
                   } else { //o sea si esta vacia
-                        out.println("<div class='notice'><img src=\"PICS/warning.svg\" alt='alerta' />No hay Artistas, debes añadir artistas</a>");
+                        out.println("<div class='notice'><img src=\"PICS/emblem-important.png\" alt='alerta' />No hay Artistas, debes añadir artistas</a>");
                   }
             }%>
       </div>

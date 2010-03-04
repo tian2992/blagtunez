@@ -40,14 +40,11 @@ public class parseXML extends HttpServlet {
 
             doc = builder.build(fis);
 
-
-
             java.util.List<Element> rootitu = doc.getContent();
-
-            //Element e = doc.getDocument().
 
             for (Element x : rootitu) {
                 java.util.List<Element> artiList = x.getChildren();
+                out.println("<div class='noList'>");
                 for (Element arti : artiList) {
 
                     artista interpre = new artista();
@@ -56,29 +53,19 @@ public class parseXML extends HttpServlet {
                     interpre.setNacionalidad(arti.getChildTextNormalize("artista-nacionalidad"));
                     interpre.setImagen(arti.getChildTextNormalize("artista-imagen"));
                     matricial.agregarArtista(interpre, true);
-                    out.println(interpre);
-                    //System.out.println(arti.getChild("artista-nombre").getText());
+                    out.println("<div class='artDisplay padEm'><h2>"+interpre.getNombre()+"</h2><ul>");
 
                     java.util.List<Element> songList = arti.getChild("canciones").getChildren();
                     for (Element sogo : songList) {
-                        cancion songi = new cancion(sogo.getChildText("nombre"),  Integer.parseInt(sogo.getChildText("anio")), interpre);
-                        matricial.agregarCancion(songi, true);
-                        out.println(songi);
+                        cancion songi = new cancion(sogo.getChildText("nombre"),  Integer.parseInt(sogo.getChildText("anio")), interpre); //si, le añadi inteprete por gusto
+                        matricial.agregarCancion(songi, interpre, true);
+                        out.println("\t<li>"+songi+"</li>");
                         //System.out.println("\t" + sogo.getChildText("nombre"));
                     }
+                    out.println("</ul></div>");
                 }
+                out.println("</div>");
             }
-
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet parseXML</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet parseXML at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            */
         }
         catch (Exception e){}
         finally {
