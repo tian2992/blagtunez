@@ -12,7 +12,11 @@
             else if (request.getParameter("error").equalsIgnoreCase("noAuto")){ %>
             <div class="error"><img src="PICS/emblem-error.png" alt="error"/>No tienes autorizacion de ingresar artistas</div>
             <% }
-          } %>
+          }
+          if (!usuario.isAdmin()){
+              out.println("<div class='error'><img src='PICS/emblem-error.png' alt='error'/>No tienes autorizacion de ingresar artistas</div></div> ");
+          } else {
+          %>
       </div>
       <div>
           <form charset="UTF-8"  id="agregaArtista" action="artistaCreacion.jsp" method="POST">
@@ -26,6 +30,7 @@
               </fieldset>
           </form>
       </div>
+      <% } %>
   </div>
   <div class="span-9 last" id="sidebar">
     <div class="span-7 prepend-1 append-1 last">
