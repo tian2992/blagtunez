@@ -115,7 +115,7 @@ ul.nav li{
 .lisCan {
 }
 .canDisplay{
-
+    display:block;
 }
 .canDisplay img{
     clear:none;

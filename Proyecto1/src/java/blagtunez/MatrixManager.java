@@ -182,7 +182,28 @@ public class MatrixManager implements java.io.Serializable {
         return null;
     }
 
+    public boolean borrarCancion(String artiString, String genString, String rola, boolean sano){
+        artista artuditu = this.buscarArtista(new artista(artiString,genString),sano); //Si sano es verdad, si si no no
+        if (artuditu==null)
+            return false;
+        
+        cancion tempRola = null; //Terriblemente ineficiente, pero que se le hace...
+        for (cancion s: artuditu.getLisCan()){
+            if (s.getNombre().equalsIgnoreCase(rola)){
+                tempRola = s;
+                break;
+            }
+        }
+        if (tempRola == null)
+            return false;
+        
+        return artuditu.getLisCan().remove(tempRola); // se que lo recorre dos veces, es ineficiente...
+        
+    }
 
+    public boolean borrarCancion(String a, String g, String r){
+        return borrarCancion(a,g,r,false);
+    }
 
     public boolean agregarArtista(String art, String gen){ 
         return agregarArtista(new artista(art,gen));

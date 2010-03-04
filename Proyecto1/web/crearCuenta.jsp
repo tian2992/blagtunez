@@ -1,6 +1,7 @@
 <%@ include file="standardHeader.jsp" %>
   <div class="span-15" id="main">
     <div>
+        <h1>Ingresa tu informacion para registrate</h1>
         <form charset="UTF-8" name="creation" action="crearUser.jsp" method="POST" >
             <div class="formCaptions">
                 <label class="formCapt">Nombre:</label><br /><input class="text" type="text" name="nombre" value="" size="20" /><br />

@@ -4,6 +4,8 @@
 
   <div class="span-15" id="main">
       <h1>Resultados de la Busqueda</h1>
+      <script src="jquery-1.4.2.js" type="text/javascript"></script>
+      <script src="delRola.js" type="text/javascript"></script>
       <% blagtunez.artista artuditu = null;
          artuditu = matri.buscarArtista(arti);
          out.println("<div class='searchResults'>");
@@ -13,11 +15,10 @@
             if (!lisCan.isEmpty()){
                 out.println("<ul class='lisCan'>");
                     for (blagtunez.cancion songi : lisCan){
-                        out.println("<li>" +
-                                "<div class='canDisplay'><h2>"+songi.toString()+"<a href='borrarCancion.jsp?artista="+artuditu.getNombre()+"&genero="+artuditu.getGenero()+"&cancion="+songi.getNombre()+"'><img src='PICS/user-trash.png' alt='borrar' /></a></h2>" +
-                                ""+
-                                "</div>" +
-                                "</li>");
+                        out.print("<li class='canDisplay'>" +
+                                "<h2>"+songi.toString());
+                        if (usuario.isAdmin()) {out.print("<a class='delus' href='borraRola.jsp?artista="+artuditu.getNombre()+"&amp;genero="+artuditu.getGenero()+"&amp;cancion="+songi.getNombre()+"'><img src='PICS/user-trash.png' alt='borrar' /></a>"); }
+                        out.print("</h2></li>");
                     }
                 out.println("</ul>");
             }
