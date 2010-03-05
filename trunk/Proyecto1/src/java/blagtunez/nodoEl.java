@@ -49,11 +49,11 @@ public class nodoEl extends nodo implements java.io.Serializable{
         return estringente;
     }
 
-    public java.util.List getPayload() {
+    public java.util.List<artista> getPayload() {
         return payload;
     }
 
-    public void setPayload(java.util.List payload) {
+    public void setPayload(java.util.List<artista> payload) {
         this.payload = payload;
     }
 

@@ -282,32 +282,38 @@ public class matriz implements java.io.Serializable {
     }
 
     public nodoEl borrarNodo(nodoEl n){
-        return borrarNodo(n);
+        return borrarNodo(n.getLetra(),n.getGenero());
     }
 
     public nodoEl borrarNodo(char C,String s){
+        
+        nodoEl nba = buscarNodo(C,s);
+        
+        if (nba==null){
+            return null;
+        }
+        
+        nodo iz = nba.getIzquierda();
+        nodo ar = nba.getArriba();
 
-        nodoCol colPro = buscarColumna(s);
-        nodoFila filPro= buscarFila(C);
+        //Tratamiento especial si es nodo inicial
 
-        nodo recAb = recorrerColumnaAbajo(colPro,C);
-        nodo recDer= recorrerFilaDerecha(filPro,s);
-        if (recAb.equals(recDer)){
-            nodo iz = recAb.getIzquierda();
-            nodo ar = recDer.getArriba();
-
-            if (recAb.isDerecha())
-                recAb.getDerecha().setIzquierda(iz);
-            iz.setDerecha(recAb.getDerecha());
-
-            if (recDer.isAbajo())
-                recDer.getAbajo().setArriba(recDer.getArriba());
-            ar.setAbajo(recDer.getAbajo());
-
-            return (nodoEl)recDer;
+        if (ar.equals(inicioCol)){
+            inicioCol = (inicioCol.getDerecha());
+        }
+        if (iz.equals(inicioFila)){
+            inicioFila = inicioFila.getAbajo();
         }
 
-        return null;
+        if (nba.isDerecha())
+            nba.getDerecha().setIzquierda(iz);
+        iz.setDerecha(nba.getDerecha());
+
+        if (nba.isAbajo())
+            nba.getAbajo().setArriba(nba.getArriba());
+        ar.setAbajo(nba.getAbajo());
+
+        return (nodoEl)nba;
     }
 
     public int contarArtistas(){

@@ -132,6 +132,13 @@ public class liston<E> implements java.util.List<E>  {
         Contenedor temp = ini;
         while (temp!=null){
             if (temp.getPayload().equals(o)){ //lo hemos encontrado
+                if (ini.equals(temp)&&fin.equals(temp)){ //era unico
+                    ini = null;
+                    fin = null;
+                    temp = null;
+                    return true;
+                }
+
                 if (temp.isAnt()) //asegurar la seguridad
                     temp.getAnt().setSig(temp.getSig());
                 else { // o sea es el inicial
@@ -142,6 +149,8 @@ public class liston<E> implements java.util.List<E>  {
                 else { //O sea es el final...
                     fin = temp.getAnt();
                 }
+
+
 
                 temp = null;
                 return true;
