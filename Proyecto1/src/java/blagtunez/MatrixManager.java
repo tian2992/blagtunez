@@ -17,6 +17,12 @@ public class MatrixManager implements java.io.Serializable {
             return;
     }
 
+    public boolean reemplazarArtista(artista art1, artista art2){
+        art2.setLisCan(art1.getLisCan());
+        borrarArtista(art1);
+        return agregarArtista(art2);
+    }
+
     public boolean agregarArtista(artista arti){
         return agregarArtista(arti, false);
     }
@@ -43,11 +49,34 @@ public class MatrixManager implements java.io.Serializable {
     public boolean borrarArtista(artista arti){ //TODO: Hacer algo con el nodo que nos retorna la matrix
         arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
         arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
-        nodo nodel= matrix.borrarNodo(arti.getNombre().charAt(0), arti.getGenero());
+        try {
+        nodoEl nodel = (nodoEl)matrix.buscarNodo(arti.getNombre().charAt(0), arti.getGenero());
         if (nodel==null){
             return false;
         }
+        liston<artista> listu = (liston<artista>)nodel.getPayload();
+        
+        artista temp = null;
+        for (artista ar:listu){ //forma no eficiente de hacer las cosas
+            if (ar.getNombre().equalsIgnoreCase(arti.getNombre())&&(ar.getGenero().equalsIgnoreCase(arti.getGenero()))){
+                temp = ar;
+                break;
+            }
+        }
+        if (temp == null)
+            return false;
+
+        listu.remove(temp);
+
+        if (listu.isEmpty()){
+            matrix.borrarNodo(nodel);
+        }
+
         return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
     public java.util.List<String> listarGeneros(){
