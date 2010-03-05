@@ -50,33 +50,45 @@ public class MatrixManager implements java.io.Serializable {
         arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
         arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
         try {
-        nodoEl nodel = (nodoEl)matrix.buscarNodo(arti.getNombre().charAt(0), arti.getGenero());
-        if (nodel==null){
-            return false;
-        }
-        liston<artista> listu = (liston<artista>)nodel.getPayload();
-        
-        artista temp = null;
-        for (artista ar:listu){ //forma no eficiente de hacer las cosas
-            if (ar.getNombre().equalsIgnoreCase(arti.getNombre())&&(ar.getGenero().equalsIgnoreCase(arti.getGenero()))){
-                temp = ar;
-                break;
+            nodoEl nodel = (nodoEl)matrix.buscarNodo(arti.getNombre().charAt(0), arti.getGenero());
+            if (nodel==null){
+                return false;
             }
-        }
-        if (temp == null)
-            return false;
+            liston<artista> listu = (liston<artista>)nodel.getPayload();
 
-        listu.remove(temp);
+            artista temp = null;
+            for (artista ar:listu){ //forma no eficiente de hacer las cosas
+                if (ar.getNombre().equalsIgnoreCase(arti.getNombre())&&(ar.getGenero().equalsIgnoreCase(arti.getGenero()))){
+                    temp = ar;
+                    break;
+                }
+            }
+            if (temp == null)
+                return false;
 
-        if (listu.isEmpty()){
-            matrix.borrarNodo(nodel);
-        }
+            listu.remove(temp);
 
-        return true;
+            if (listu.isEmpty()){
+                matrix.borrarNodo(nodel);
+            }
+
+            return true;
         }
         catch (Exception e){
             return false;
         }
+    }
+
+    public boolean borrarGenero(String s){
+
+        //no funcio...
+        nodoCol coli = matrix.buscarColumna(s);
+        
+        if (coli==null)
+            return false;
+
+        matrix.borrarColumna(coli);
+        return true;
     }
 
     public java.util.List<String> listarGeneros(){

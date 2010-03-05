@@ -285,6 +285,49 @@ public class matriz implements java.io.Serializable {
         return borrarNodo(n.getLetra(),n.getGenero());
     }
 
+    public boolean borrarNodlicio(nodo nud){
+        
+        if (nud.isArriba())
+            nud.getArriba().setAbajo(nud.getAbajo());
+        if (nud.isAbajo())
+            nud.getAbajo().setArriba(nud.getArriba());
+        if (nud.isDerecha())
+            nud.getDerecha().setIzquierda(nud.getIzquierda());
+        if (nud.isIzquierda())
+            nud.getIzquierda().setDerecha(nud.getDerecha());
+
+        return true;
+    }
+
+    public boolean borrarColumna(nodoCol nc){
+        if (nc == null)
+            return false;
+        
+        if (nc.equals(inicioCol))
+            inicioCol = nc.getDerecha();
+        if (nc.equals(finCol))
+            finCol = nc.getIzquierda();
+        
+
+        nodo n = nc.getAbajo();
+        
+        while (n!=null){
+            borrarNodlicio(n);
+            n = n.getAbajo();
+        }
+
+        borrarNodlicio(nc);
+
+        nc = null;
+
+        return true;
+    }
+
+    public boolean borrarColumna(String genero){
+        nodoCol nc = buscarGenero(genero);
+        return borrarColumna(nc);
+    }
+
     public nodoEl borrarNodo(char C,String s){
         
         nodoEl nba = buscarNodo(C,s);
@@ -293,27 +336,19 @@ public class matriz implements java.io.Serializable {
             return null;
         }
         
-        nodo iz = nba.getIzquierda();
-        nodo ar = nba.getArriba();
-
-        //Tratamiento especial si es nodo inicial
-
-        if (ar.equals(inicioCol)){
-            inicioCol = (inicioCol.getDerecha());
-        }
-        if (iz.equals(inicioFila)){
-            inicioFila = inicioFila.getAbajo();
-        }
-
-        if (nba.isDerecha())
-            nba.getDerecha().setIzquierda(iz);
-        iz.setDerecha(nba.getDerecha());
-
-        if (nba.isAbajo())
-            nba.getAbajo().setArriba(nba.getArriba());
-        ar.setAbajo(nba.getAbajo());
+        borrarNodlicio(nba);
 
         return (nodoEl)nba;
+    }
+
+    public nodoCol buscarGenero(String genero){
+        nodoCol temp = inicioCol;
+        while (temp!=null){
+            if (temp.getGenero().equalsIgnoreCase(genero)){//Encontrado
+                return temp;
+            }
+        }
+        return null;
     }
 
     public int contarArtistas(){
@@ -363,7 +398,7 @@ public class matriz implements java.io.Serializable {
      * @return true si es vacia, false si no lo es
      */
     public boolean esVacia(){
-        if ((inicioCol.getAbajo() == null) || (inicioFila.getDerecha() == null))
+        if ((!inicioFila.isAbajo()) && (!inicioCol.isDerecha()) && (!inicioFila.isDerecha()) && (!inicioCol.isAbajo()))
             return true;
         else
             return false;

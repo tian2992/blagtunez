@@ -7,9 +7,10 @@
       </p>
       <div>
           <%
+            String geni = "";
             if (request.getParameter("gen")==null){
             } else {
-                String geni = blagtunez.stringFixer.toUTF8(request.getParameter("gen"));
+                geni = blagtunez.stringFixer.toUTF8(request.getParameter("gen"));
                 out.println("Reporte de genero: "+geni);
             java.util.List<blagtunez.artista> arList = matri.listarArtistas(geni);
             if (arList!=null){
@@ -17,7 +18,7 @@
                 
                 out.println("<ul class='noList'>");
                     for (blagtunez.artista ar :arList){
-                        out.println("<li><div class='artDisplay'>");
+                        out.println("<li class='artDisplay'><div>");
                         if (ar.isImagen()){
                             out.println("<img src='"+ar.getImagen()+"' alt='' /> ");
                         }
@@ -31,12 +32,17 @@
                   } else { //o sea si esta vacia
                         out.println("<div class='notice'>No hay Artistas, debes añadir artistas</a>");
                   }
-            }}%>
+            }
+            }%>
       </div>
   </div>
   <div class="span-9 last" id="sidebar">
     <div class="span-7 prepend-1 append-1 last">
-        
+        <%
+            if (usuario.isAdmin()){ %>
+                <a href='borraGenero.jsp?gen=<% out.print(geni); %>' onclick='alert("Esto no se puede deshacer")' >Borrar Genero?</a>
+            <% }
+        %>
     </div>
     <div class="span-7 prepend-1 append-1 last">
 
