@@ -17,10 +17,19 @@ public class MatrixManager implements java.io.Serializable {
             return;
     }
 
-    public boolean reemplazarArtista(artista art1, artista art2){
+    public void vaciarMatriz(){
+        matrix = new matriz();
+    }
+
+    public boolean reemplazarArtista(artista art1, artista art2, Boolean sano){
+        UserManager.log("Se reemplaza "+art1+" por "+art2);
         art2.setLisCan(art1.getLisCan());
-        borrarArtista(art1);
-        return agregarArtista(art2);
+        borrarArtista(art1,sano);
+        return agregarArtista(art2,sano);
+    }
+
+    public boolean reemplazarArtista(artista art1, artista art2){
+        return reemplazarArtista(art1,art2,false);
     }
 
     public boolean agregarArtista(artista arti){
@@ -29,7 +38,7 @@ public class MatrixManager implements java.io.Serializable {
 
     public boolean agregarArtista(artista arti, boolean sano){
         setup();
-
+        UserManager.log("Se agrega "+arti);
         if (!sano){
             arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
             arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
@@ -46,9 +55,16 @@ public class MatrixManager implements java.io.Serializable {
         //return agregarArtista(a.getNombre(), a.getNacionalidad(),a.getImagen());
     }
 
-    public boolean borrarArtista(artista arti){ //TODO: Hacer algo con el nodo que nos retorna la matrix
-        arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
-        arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
+    public boolean borrarArtista(artista arti){
+        return borrarArtista(arti, false);
+    }
+
+    public boolean borrarArtista(artista arti, boolean sano){ //TODO: Hacer algo con el nodo que nos retorna la matrix
+        UserManager.log("Se Borra "+arti);
+        if (!sano){
+            arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
+            arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
+        }
         try {
             nodoEl nodel = (nodoEl)matrix.buscarNodo(arti.getNombre().charAt(0), arti.getGenero());
             if (nodel==null){
@@ -80,7 +96,7 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public boolean borrarGenero(String s){
-
+        UserManager.log("Se borra el genero "+s);
         //no funcio...
         nodoCol coli = matrix.buscarColumna(s);
         
@@ -177,7 +193,9 @@ public class MatrixManager implements java.io.Serializable {
             songi.getInterprete().setGenero(stringFixer.toUTF8(songi.getInterprete().getGenero()));
             songi.getInterprete().setNombre(stringFixer.toUTF8(songi.getInterprete().getNombre()));
         }
-        
+
+        UserManager.log("Se agregó "+songi);
+
         return artuditu.getLisCan().add(songi); //lo metemos ya sanitizado
         
         
@@ -190,6 +208,7 @@ public class MatrixManager implements java.io.Serializable {
             songi.setNombre(songi.getNombre());
         songi.setInterprete(arti);
         arti.getLisCan().add(songi);
+        UserManager.log("Se agregó "+songi);
         return true;
     }
 
@@ -237,7 +256,7 @@ public class MatrixManager implements java.io.Serializable {
             arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
         }
 
-        nodoEl nodista = matrix.buscarNodo(arti.getNombre().charAt(0),arti.getGenero());
+        nodoEl nodista = (nodoEl)matrix.buscarNodo(arti.getNombre().charAt(0),arti.getGenero());
 
         if (nodista == null)
             return null;
@@ -262,6 +281,10 @@ public class MatrixManager implements java.io.Serializable {
         return null;
     }
 
+    public artista buscarArtista(String s){
+        return matrix.getArtista(s);
+    }
+
     public boolean borrarCancion(String artiString, String genString, String rola, boolean sano){
         if (!sano){
             rola = stringFixer.toUTF8(rola);
@@ -281,6 +304,8 @@ public class MatrixManager implements java.io.Serializable {
         if (tempRola == null)
             return false;
         
+        UserManager.log("Se borro "+tempRola);
+
         return artuditu.getLisCan().remove(tempRola); // se que lo recorre dos veces, es ineficiente...
         
     }

@@ -20,7 +20,14 @@ var rolCre = function(){
     
 };
 
+var modArt = function(){
+    $("#nomMod").click(function(event){
+        $("#modOrto").show("slow");
+    });
+}
+
 $(document).ready(function(){
     rolDel();
     rolCre();
+    modArt();
 });

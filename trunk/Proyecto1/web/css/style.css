@@ -62,9 +62,16 @@ fieldset{}
     font-size:1.5em;
 }
 #footer{
-    
     margin:0;
     text-align:right;
+}
+#nomMod{
+    float:right;
+}
+#modOrto{
+    border-bottom:2px dashed #CCC;
+    display:none;
+    margin-bottom:2em;
 }
 .nav{
     text-align:right;

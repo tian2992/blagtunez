@@ -52,6 +52,15 @@ public class artista implements java.io.Serializable {
         return getNombre()+" - "+getGenero();
     }
 
+    public Boolean isImagen(){
+        if (imagen==null)
+            return false;
+        if (imagen.equals(""))
+            return false;
+
+        return true;
+    }
+
     public String getGenero() {
         return genero;
     }
@@ -61,20 +70,11 @@ public class artista implements java.io.Serializable {
     }
 
     public String getImagen() {
-        return imagenPrefix+imagen;
+        return imagen;
     }
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
-    }
-
-    public Boolean isImagen(){
-        if (imagen==null)
-            return false;
-        if (imagen.equals(""))
-            return false;
-
-        return true;
     }
 
     public String getNacionalidad() {
@@ -93,7 +93,7 @@ public class artista implements java.io.Serializable {
         this.nombre = nombre;
     }
 
-        public List<cancion> getLisCan() {
+    public List<cancion> getLisCan() {
         return lisCan;
     }
 

@@ -6,6 +6,8 @@ package blagtunez;
  */
 public class UserManager implements java.io.Serializable {
     static java.util.List<Usuario> lisUser;
+
+    static String bitAct = "";
     
     static void setup(){
         if (lisUser == null){
@@ -49,6 +51,10 @@ public class UserManager implements java.io.Serializable {
         else{
             return false;
         }
+    }
+
+    public static void log(String s){
+        bitAct = bitAct + s + "\n";
     }
 
     public java.util.List<Usuario> getUserList(){

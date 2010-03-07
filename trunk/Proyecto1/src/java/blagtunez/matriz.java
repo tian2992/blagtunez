@@ -444,6 +444,33 @@ public class matriz implements java.io.Serializable {
         return lis;
     }
 
+    public artista getArtista(String s){ //Terriblemente ineficiente
+        java.util.List<artista> lis;
+        lis = new liston<artista>();
+        nodoFila anclaIz = inicioFila;
+        try {
+        nodoEl nodoRecorrer;
+            while (anclaIz!=null){
+                nodoRecorrer = (nodoEl)anclaIz.getDerecha();
+                while(nodoRecorrer!=null){
+                    java.util.List<artista> arList = nodoRecorrer.getPayload();
+                    for (artista art: arList){
+                        if (art.getNombre().equalsIgnoreCase(s)){
+                            return art;
+                        }
+                    }
+                    nodoRecorrer = (nodoEl)nodoRecorrer.getDerecha();
+                }
+                anclaIz = anclaIz.getAbajo();
+            }
+        }
+        catch (Exception e){
+            return null;
+        }
+
+        return null;
+    }
+
     public java.util.List<artista> getArtistasPorGenero(String s){
         java.util.List<artista> lis;
         lis = new liston<artista>();
