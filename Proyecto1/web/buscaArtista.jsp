@@ -4,12 +4,36 @@
 
   <div class="span-15" id="main">
       <h1>Resultados de la Busqueda</h1>
-      
       <% blagtunez.artista artuditu = null;
          artuditu = matri.buscarArtista(arti);
          out.println("<div class='searchResults'>");
          if (artuditu != null){
-            out.println("<p class='explica'>Listado para: <span class='rojo'>"+artuditu.getNombre()+"</span></p>");
+            out.println("<p class='explica'>Listado para: <span class='rojo'>"+artuditu.getNombre()+"</span> <span id='nomMod' class='small'>¿Editar?</span></p>"); %>
+         <div id="modOrto">
+             <div>
+                  <form charset="UTF-8"  id="modArtista" action="editarArtista.jsp" method="POST">
+                      <fieldset>
+                      <input type="hidden" name='ariNon' id='ariNon' value='<%= artuditu.getNombre() %>'>
+                      <input type="hidden" name='ariGen' id='ariGen' value='<%= artuditu.getGenero() %>'>
+                      <label class="formCap">Nombre: </label><br /><input type="text" class="text" name="nombre" id="nombre" value="<%= artuditu.getNombre() %>" size="20" /><br/>
+                      <label class="formCap">Nacionalidad: </label><br /><input type="text" class="text" name="nacionalidad" id="nacionalidad" value="<%= artuditu.getNacionalidad() %>" size="20" /><br />
+                      <label class="formCap">Genero: </label><br /><input type="text" class="text" name="genero" id="genero" value="<%= artuditu.getGenero() %>" size="20" /><br />
+                      <label class="formcap formOpcional">Imagen: </label><br /><input type="text" class="text" name="imagen" id="imagen" value="<%= artuditu.getImagen() %>" size="20" /><br />
+                      <input type="submit" value="Modificar Artista" /><br />
+                      <label>Los campos en <span class="formOpcional">color, son opcionales</span></label>
+                      </fieldset>
+                  </form>
+              </div>
+              <div>
+                  <form charset="UTF-8" id="borraArtista" action="artistaBorrar.jsp" method="POST">
+                      <fieldset>
+                        <input type="hidden" name='artuditu' id='artuditu' value='<%= arti.getNombre()+"---"+arti.getGenero() %>'>
+                        <input type="submit" value="Borrar!" />
+                      </fieldset>
+                  </form>
+              </div>
+          </div>
+          <%
             java.util.List<blagtunez.cancion> lisCan = artuditu.getLisCan();
             if (!lisCan.isEmpty()){
                 out.println("<ul class='lisCan'>");
