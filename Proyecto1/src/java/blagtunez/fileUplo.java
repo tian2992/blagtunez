@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package blagtunez;
 
 import java.io.IOException;
@@ -6,10 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.jdom.*;
-import org.jdom.input.*;
-import java.io.*;
 
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.servlet.*;
@@ -24,9 +25,9 @@ import org.apache.commons.io.*;
  *
  * @author tian
  */
-public class parseXML extends HttpServlet {
-
-    /**
+public class fileUplo extends HttpServlet {
+   
+    /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -39,10 +40,8 @@ public class parseXML extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
 
-            MatrixManager matricial = new MatrixManager();
-            
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-
+            if (isMultipart){
             FileItemFactory factory = new DiskFileItemFactory();
 
             // Create a new file upload handler
@@ -52,50 +51,44 @@ public class parseXML extends HttpServlet {
 
             java.util.List<FileItem> items = upload.parseRequest(request);
 
-            items.get(0).getOutputStream();
 
-            //FileInputStream fis = new FileInputStream("/home/tian/ArchivoXML.xml");
+            java.util.Iterator iter = items.iterator();
+            while (iter.hasNext()) {
 
-            SAXBuilder builder = new SAXBuilder();
-            Document doc = null;
+                FileItem item = (FileItem) iter.next();
 
-            doc = builder.build(items.get(0).getInputStream());
-
-            java.util.List<Element> rootitu = doc.getContent();
-
-            for (Element x : rootitu) {
-                java.util.List<Element> artiList = x.getChildren();
-                out.println("<div class='noList'>");
-                for (Element arti : artiList) {
-
-                    artista interpre = new artista();
-                    interpre.setNombre(arti.getChildTextNormalize("artista-nombre"));
-                    interpre.setGenero(arti.getChildTextNormalize("genero-musical"));
-                    interpre.setNacionalidad(arti.getChildTextNormalize("artista-nacionalidad"));
-                    interpre.setImagen(arti.getChildTextNormalize("artista-imagen"));
-                    matricial.agregarArtista(interpre, true);
-                    out.println("<div class='artDisplay padEm'><h2>"+interpre.getNombre()+"</h2><ul>");
-
-                    java.util.List<Element> songList = arti.getChild("canciones").getChildren();
-                    for (Element sogo : songList) {
-                        cancion songi = new cancion(sogo.getChildText("nombre"),  Integer.parseInt(sogo.getChildText("anio")), interpre); //si, le añadi inteprete por gusto
-                        matricial.agregarCancion(songi, interpre, true);
-                        out.println("\t<li>"+songi+"</li>");
-                        //System.out.println("\t" + sogo.getChildText("nombre"));
-                    }
-                    out.println("</ul></div>");
-                }
-                out.println("</div>");
+            if (!item.isFormField()) {
+                out.print(item.getInputStream());
             }
+            }
+            //out.print(items.get(0).getOutputStream());
+
+            }
+            else {
+                out.print("WTF!");
+            }
+
+            /* TODO output your page here
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet fileUplo</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet fileUplo at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+            */
         }
-        catch (Exception e){}
+        catch (Exception e){
+            out.print(e);
+        }
         finally {
             out.close();
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -106,9 +99,9 @@ public class parseXML extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -121,7 +114,7 @@ public class parseXML extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */

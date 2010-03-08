@@ -50,10 +50,7 @@ public class artista implements java.io.Serializable {
 
     public String toString(){
         String temp = "";
-        temp += getNombre()+" - "+getGenero()+ "\n";
-        temp += "====================\n";
-        for (cancion s: lisCan)
-            temp += s + "\n";
+        temp += getNombre()+" - "+getGenero();
         return temp;
     }
 
@@ -75,6 +72,9 @@ public class artista implements java.io.Serializable {
     }
 
     public String getImagen() {
+        return imagenPrefix+imagen;
+    }
+    public String getPic() {
         return imagen;
     }
 

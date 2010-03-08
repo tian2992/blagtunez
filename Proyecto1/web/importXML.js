@@ -1,10 +1,6 @@
 $(document).ready(function(){
-    $("#importa").click(function(event){
-    $.get(this.getAttribute("href"),{},function(data){
-        $(".contenidoso").append(data).show("slow");
-    });
-
-    event.preventDefault();
+    $("#clicar").click(function(event){
+        $("#iframeUpload").height(350).width(600).show("slow");
     });
 
 });

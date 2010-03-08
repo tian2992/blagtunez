@@ -8,7 +8,12 @@
         <servlet-name>parseXML</servlet-name>
         <servlet-class>blagtunez.parseXML</servlet-class>
     </servlet>
-    <servlet><servlet-name>mailer</servlet-name><servlet-class>blagtunez.mailer</servlet-class></servlet><servlet-mapping>
+    <servlet><servlet-name>mailer</servlet-name><servlet-class>blagtunez.mailer</servlet-class></servlet>
+    <servlet>
+        <servlet-name>fileUplo</servlet-name>
+        <servlet-class>blagtunez.fileUplo</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>testServlet</servlet-name>
         <url-pattern>/testServlet</url-pattern>
     </servlet-mapping>
@@ -19,6 +24,10 @@
     <servlet-mapping>
         <servlet-name>mailer</servlet-name>
         <url-pattern>/mailer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>fileUplo</servlet-name>
+        <url-pattern>/fileUplo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

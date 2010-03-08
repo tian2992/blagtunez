@@ -6,12 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>Bienvenido a Blag.fm</title>
-<!-- Framework CSS -->
 <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection"/>
 <link rel="stylesheet" href="css/print.css" type="text/css" media="print"/>
 <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"/><![endif]-->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> -->
 
 </head>
 <body>

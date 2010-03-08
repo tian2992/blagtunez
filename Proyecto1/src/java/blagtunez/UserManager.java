@@ -11,10 +11,8 @@ public class UserManager implements java.io.Serializable {
     
     static void setup(){
         if (lisUser == null){
-            if (liston.FuncioListon)
-                lisUser = new liston<Usuario>();
-            else
-                lisUser = new java.util.ArrayList<Usuario>();
+            lisUser = new liston<Usuario>();
+
 
             Usuario ad = new Usuario();
             ad.setAdmin(true);
@@ -28,6 +26,16 @@ public class UserManager implements java.io.Serializable {
 
     public UserManager(){
         setup();
+    }
+
+    static public Usuario getUsuario(String user){
+        setup();
+        for (Usuario us: lisUser){
+            if ((us.getUsername().equalsIgnoreCase(user))){
+                return us;
+            }
+        }
+        return null;
     }
 
     static public Usuario autenticar(String user, String pass){
@@ -54,7 +62,11 @@ public class UserManager implements java.io.Serializable {
     }
 
     public static void log(String s){
-        bitAct = bitAct + s + "\n";
+        bitAct = bitAct + s + "<br />\n";
+    }
+
+    public static String getLog(){
+        return bitAct;
     }
 
     public java.util.List<Usuario> getUserList(){
