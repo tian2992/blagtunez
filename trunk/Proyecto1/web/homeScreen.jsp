@@ -55,6 +55,13 @@
                 <input type="submit" value="Buscar!" />
             </form>
         </div>
+        <div>
+            <h2>Listado de Artistas por Genero</h2>
+                <form charset="UTF-8" name="buscaArtistaConNombre" action="showAr.jsp" method="POST">
+                <label>Nombre del Artista: </label><input class="text" type="text" name="artista" id="artista" size="20" /><br />
+                <input type="submit" value="Buscar!" />
+            </form>
+        </div>
         <% } %>
     </div>
   </div>

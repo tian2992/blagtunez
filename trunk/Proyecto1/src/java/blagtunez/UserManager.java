@@ -21,7 +21,7 @@ public class UserManager implements java.io.Serializable {
             ad.setUsername("admin");
             ad.setPass("admin");
             ad.setNombre("Administrador");
-            ad.setEMail("tian@localhost");
+            ad.setEMail("tian2992@gmail.com");
             lisUser.add(ad);
         }
     }

@@ -7,7 +7,7 @@
                 <label class="formCapt">Nombre:</label><br /><input class="text" type="text" name="nombre" value="" size="20" /><br />
                 <label class="formCapt">UserName:</label><br /><input class="text" type="text" name="username" value="" size="20" /><br />
                 <label class="formCapt">Password:</label><br /><input class="text" type="password" name="pass" value="" size="20" /><br />
-                <label class="formCapt">E-Mail:</label><br /><input class="text" type="text" name="eMail" value="" size="20" /><br />
+                <label class="formCapt">E-Mail:</label><br /><input class="text" type="text" name="email" value="" size="20" /><br />
                 <input type="submit" value="Crear Cuenta" />
             </div>
         </form>
