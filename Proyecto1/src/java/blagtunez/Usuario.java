@@ -8,7 +8,7 @@ public class Usuario implements java.io.Serializable {
     private String nombre;
     private String username;
     private String pass;
-    private String eMail;
+    private String email;
     private boolean admin;
 
 
@@ -50,17 +50,20 @@ public class Usuario implements java.io.Serializable {
     }
 
     /**
-     * @return the eMail
+     * @return the email
      */
     public String getEMail() {
-        return eMail;
+        return email;
     }
 
     /**
-     * @param eMail the eMail to set
+     * @param email the email to set
      */
     public void setEMail(String eMail) {
-        this.eMail = eMail;
+        this.email = eMail;
+    }
+    public void setEmail(String eMail) {
+        this.email = eMail;
     }
 
     /**
