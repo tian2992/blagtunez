@@ -134,6 +134,17 @@ ul.nav li{
     clear:none;
     float:right;
 }
+#divurcio{
+    font-size:small;
+}
+#divurcio h1 {
+    padding-top:2em;
+    font-size:large;
+}
+#divurcio h2 {
+    font-size:medium;
+}
+
 /* ============ Seccion de Estructura de la pagina ================ */
 #main {
     /*

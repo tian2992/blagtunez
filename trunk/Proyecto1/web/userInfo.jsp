@@ -10,7 +10,7 @@
                 <label class="formCapt">Nombre:</label><br /><input class="text" type="text" name="nombre" value="<%= usuario.getNombre() %>" size="20" /><br />
                 <label class="formCapt">UserName:</label><br /><input class="text" type="text" name="username" value="<%= usuario.getUsername() %>" size="20" /><br />
                 <label class="formCapt">E-Mail:</label><br /><input class="text" type="text" name="eMail" value="<%= usuario.getEMail() %>" size="20" /><br />
-                <input  type="submit" value="Crear Cuenta" />
+                
             </div>
         </form>
     </div>

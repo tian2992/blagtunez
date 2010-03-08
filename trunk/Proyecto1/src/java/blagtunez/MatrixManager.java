@@ -22,7 +22,7 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public boolean reemplazarArtista(artista art1, artista art2, Boolean sano){
-        UserManager.log("Se reemplaza "+art1+" por "+art2);
+        UserManager.log("<h2>Se reemplaza "+art1+" por "+art2+"</h2>");
         art2.setLisCan(art1.getLisCan());
         borrarArtista(art1,sano);
         return agregarArtista(art2,sano);
@@ -38,7 +38,6 @@ public class MatrixManager implements java.io.Serializable {
 
     public boolean agregarArtista(artista arti, boolean sano){
         setup();
-        UserManager.log("Se agrega "+arti);
         if (!sano){
             arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
             arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
@@ -47,6 +46,7 @@ public class MatrixManager implements java.io.Serializable {
 
         try{
             let = (nodoEl)matrix.agregarNodo(let);
+            UserManager.log("<h1>Se agrega el artista "+arti+"</h1>");
             return let.getPayload().add(arti);
         }
         catch (Exception e){
@@ -60,7 +60,7 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public boolean borrarArtista(artista arti, boolean sano){ //TODO: Hacer algo con el nodo que nos retorna la matrix
-        UserManager.log("Se Borra "+arti);
+        
         if (!sano){
             arti.setNombre(stringFixer.toUTF8(arti.getNombre()));
             arti.setGenero(stringFixer.toUTF8(arti.getGenero()));
@@ -87,7 +87,7 @@ public class MatrixManager implements java.io.Serializable {
             if (listu.isEmpty()){
                 matrix.borrarNodo(nodel);
             }
-
+            UserManager.log("<h1>Se Borra el artista "+arti+"</h1>");
             return true;
         }
         catch (Exception e){
@@ -96,7 +96,7 @@ public class MatrixManager implements java.io.Serializable {
     }
 
     public boolean borrarGenero(String s){
-        UserManager.log("Se borra el genero "+s);
+        UserManager.log("<h1>Se borra el genero "+s+"</h1>");
         //no funcio...
         nodoCol coli = matrix.buscarColumna(s);
         
