@@ -1,11 +1,16 @@
 <%@ include file="standardHeader.jsp" %>
-<jsp:useBean id="arti" class="blagtunez.artista" scope="page" />
-<jsp:setProperty name="arti" property="*"/>
+
 
   <div class="span-15" id="main">
       <h1>Resultados de la Busqueda</h1>
       <% blagtunez.artista artuditu = null;
-         artuditu = matri.buscarArtista(arti);
+        String s = "";
+         if (!(request.getParameter("nombre")==null) && !(request.getParameter("genero")==null)){
+             artuditu = matri.buscarArtista(new blagtunez.artista(request.getParameter("nombre"),request.getParameter("genero")));
+             s += "<h1>"+artuditu.toString()+"</h1><ul>";
+         }
+
+
          out.println("<div class='searchResults'>");
          if (artuditu != null){
             out.println("<p class='explica'>Listado para: <span class='rojo'>"+artuditu.getNombre()+"</span> <span id='nomMod' class='small'>¿Editar?</span></p>"); %>
@@ -27,7 +32,7 @@
               <div>
                   <form charset="UTF-8" id="borraArtista" action="artistaBorrar.jsp" method="POST">
                       <fieldset>
-                        <input type="hidden" name='artuditu' id='artuditu' value='<%= arti.getNombre()+"---"+arti.getGenero() %>'>
+                        <input type="hidden" name='artuditu' id='artuditu' value='<%= artuditu.getNombre()+"---"+artuditu.getGenero() %>'>
                         <input type="submit" value="Borrar!" />
                       </fieldset>
                   </form>
@@ -35,25 +40,32 @@
           </div>
           <%
             java.util.List<blagtunez.cancion> lisCan = artuditu.getLisCan();
+            
             if (!lisCan.isEmpty()){
+                
                 out.println("<ul class='lisCan'>");
                     for (blagtunez.cancion songi : lisCan){
                         out.print("<li class='canDisplay'>" +
                                 "<h2>"+songi.toString());
                         if (usuario.isAdmin()) {out.print("<a class='delus' href='borraRola.jsp?artista="+blagtunez.stringFixer.urlEncode(artuditu.getNombre())+"&amp;genero="+blagtunez.stringFixer.urlEncode(artuditu.getGenero())+"&amp;cancion="+blagtunez.stringFixer.urlEncode(songi.getNombre())+"'><img src='PICS/user-trash.png' alt='borrar' /></a>"); }
                         out.print("</h2></li>");
+                        s+="<li>"+songi.toString()+"</li>";
                     }
                 out.println("</ul>");
+                                     
+
             }
             else {
                 out.println("<div class='success'>Este artista no tiene Canciones</div>");
             }
+        s += "</ul>";
 
          }
          else{
              out.println("<div class='notice'><img src='PICS/emblem-important.png' alt='importante' />Tu busqueda fue fallida, intenta <a href='homeScreen.jsp'>buscar de nuevo</a></div> ");
              }
          out.println("</div>");
+
          %>
 </div>
 
@@ -79,6 +91,16 @@
 
            }  %>
     </div>
+    <div class="span-7 prepend-1 append-1 last" ><p>
+        <%
+         if (request.getParameter("mail") == null) {
+                    out.println("<a href='?nombre="+artuditu.getNombre()+"&genero="+artuditu.getGenero()+"&mail=true'>Enviar Mail</a>");
+                } else {
+                    out.println(blagtunez.mail.sendMail(usuario.getEMail(), s, "Reporte de Artista"));
+                }
+             %>
+    </p>
+</div>
   </div>
 
 
