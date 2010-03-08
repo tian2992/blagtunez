@@ -162,6 +162,19 @@ public class MatrixManager implements java.io.Serializable {
         }
     }
 
+    public java.util.List<cancion> buscarCancion(String s){
+        java.util.List<artista> ar = listarArtistas();
+        java.util.List<cancion> temp = new liston();
+        for (artista a: ar){
+            for (cancion c: a.getLisCan()){
+                if (c.getNombre().equalsIgnoreCase(s)){
+                    temp.add(c);
+                }
+            }
+        }
+        return temp;
+    }
+
     public boolean agregarCancion(cancion songi, boolean sano){
         if (songi==null)
             return false;

@@ -62,6 +62,13 @@
                 <input type="submit" value="Buscar!" />
             </form>
         </div>
+        <div>
+            <h2>Buscar Canciones</h2>
+                <form charset="UTF-8" name="buscaCancion" action="listarCanciones.jsp" method="POST">
+                <label>Nombre del Artista: </label><input class="text" type="text" name="songi" id="songi" size="20" /><br />
+                <input type="submit" value="Buscar!" />
+            </form>
+        </div>
         <% } %>
     </div>
   </div>
