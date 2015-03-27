@@ -1,0 +1,1 @@
+Proyecto 1 de EDD, Sebastian Oliva; no es estable, no recomendado para nada.
